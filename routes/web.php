@@ -21,3 +21,9 @@ Route::get('/profile/create', [VisitorController::class, 'create'])->name('profi
 Route::post('/profile', [VisitorController::class, 'store'])->name('profile.store');
 
 Route::get('/profile/{id}', [VisitorController::class, 'show'])->name('profile.show');
+
+Route::get('/profile/{id}/edit', [VisitorController::class, 'edit'])->name('profile.edit');
+
+Route::put('/profile/{id}', [VisitorController::class, 'update'])->name('profile.update');
+
+Route::delete('profile/{id}', [VisitorController::class, 'destroy'])->name('profile.destroy');
