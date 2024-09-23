@@ -32,6 +32,7 @@ class VisitorController extends Controller
         $visitor = new Visitor();
         $visitor->name = $request->name;
         $visitor->email = $request->email;
+        $visitor->birthday = $request->birthday;
         $visitor->password = Hash::make($request->password);
 
         $visitor->save();
@@ -65,6 +66,7 @@ class VisitorController extends Controller
     {
         $visitor = Visitor::find($id);
         $visitor->name = $request->name;
+        $visitor->birthday = $request->birthday;
 
         $visitor->save();
 
