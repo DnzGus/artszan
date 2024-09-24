@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VisitorController;
-use App\Http\Controllers\TagsController;
+use App\Http\Controllers\TagController;
 
 
 Route::get('/', function () {
@@ -33,14 +33,14 @@ Route::get('/profile/{id}/edit',[VisitorController::class, 'edit'])->name('profi
 
 Route::get('tag', [TagController::class, 'index'])->name('tag.index');
 
-Route::get('/tag/create', [VisitorController::class, 'create'])->name('tag.register');
+Route::get('/tag/create', [TagController::class, 'create'])->name('tag.register');
 
-Route::post('/tag', [VisitorController::class, 'store'])->name('tag.store');
+Route::post('/tag', [TagController::class, 'store'])->name('tag.store');
 
-Route::get('/tag/{id}', [VisitorController::class, 'show'])->name('tag.show');
+Route::get('/tag/{id}', [TagController::class, 'show'])->name('tag.show');
 
-Route::get('/profile/{id}/edit', [VisitorController::class, 'edit'])->name('profile.edit');
+Route::get('/tag/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
 
-Route::put('/profile/{id}', [VisitorController::class, 'update'])->name('profile.update');
+Route::put('/tag/{id}', [TagController::class, 'update'])->name('tag.update');
 
-Route::delete('profile/{id}', [VisitorController::class, 'destroy'])->name('profile.destroy');
+Route::delete('tag/{id}', [TagController::class, 'destroy'])->name('tag.destroy');

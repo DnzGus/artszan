@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
-class TagsController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('tags.index');
+        $tags = Tag::all();
+        return view('tag.index',compact('tags'));
     }
 
     /**
@@ -19,7 +21,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        //
+        return view('tag.create');
     }
 
     /**
@@ -27,7 +29,13 @@ class TagsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tag = new Tag();
+        $tag->name = $request->name;
+        $tag->description = $request->description;
+
+        $tag->save();
+
+        return redirect()->route('tag.index');
     }
 
     /**
@@ -35,7 +43,9 @@ class TagsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $tag = Tag::find($id);
+
+        return view('tag.show', compact('tag'));
     }
 
     /**
@@ -43,7 +53,9 @@ class TagsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $tag = Tag::find($id);
+
+        return view('tag.edit', compact('tag'));
     }
 
     /**
@@ -51,7 +63,14 @@ class TagsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $tag = Tag::find($id);
+
+        $tag->name = $request->name;
+        $tag->description = $request->description;
+
+        $tag->save();
+
+        return redirect()->route('tag.index');
     }
 
     /**
@@ -59,6 +78,10 @@ class TagsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tag = Tag::find($id);
+
+        $tag->delete();
+        
+        return redirect()->route('tag.index');
     }
 }
