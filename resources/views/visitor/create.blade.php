@@ -4,6 +4,8 @@
   <input type="text" name="name"><br>
   <label for="lname">Email:</label><br>
   <input type="email" name="email"><br><br>
+  <label for="birthday">Birthday:</label>
+  <input type="date" name="birthday">
   <label for="password">Password:</label><br>
   <input type="password" name="password"><br><br>
   <input type="submit" value="Submit">

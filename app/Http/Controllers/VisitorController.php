@@ -32,6 +32,7 @@ class VisitorController extends Controller
         $visitor = new Visitor();
         $visitor->name = $request->name;
         $visitor->email = $request->email;
+        $visitor->birthday = $request->birthday;
         $visitor->password = Hash::make($request->password);
 
         $visitor->save();
@@ -54,7 +55,8 @@ class VisitorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $visitor = Visitor::find($id);
+        return view('visitor.edit', compact('visitor'));
     }
 
     /**
@@ -62,7 +64,13 @@ class VisitorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $visitor = Visitor::find($id);
+        $visitor->name = $request->name;
+        $visitor->birthday = $request->birthday;
+
+        $visitor->save();
+
+        return redirect()->route('profile.index')->with('mensagem','Perfil alterado com sucesso!');
     }
 
     /**
@@ -70,6 +78,9 @@ class VisitorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $visitor = Visitor::find($id);
+        $visitor->delete();
+
+        return redirect()->route('home');
     }
 }

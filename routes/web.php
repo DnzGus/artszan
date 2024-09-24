@@ -32,3 +32,9 @@ Route::get('/tag/create', [VisitorController::class, 'create'])->name('tag.regis
 Route::post('/tag', [VisitorController::class, 'store'])->name('tag.store');
 
 Route::get('/tag/{id}', [VisitorController::class, 'show'])->name('tag.show');
+=======
+Route::get('/profile/{id}/edit', [VisitorController::class, 'edit'])->name('profile.edit');
+
+Route::put('/profile/{id}', [VisitorController::class, 'update'])->name('profile.update');
+
+Route::delete('profile/{id}', [VisitorController::class, 'destroy'])->name('profile.destroy');
