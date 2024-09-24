@@ -330,7 +330,7 @@ return [
         ],
         [
             'text' => 'change_password',
-            'url' => 'admin/settings',
+            'url' => '/profile/changepassword',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [

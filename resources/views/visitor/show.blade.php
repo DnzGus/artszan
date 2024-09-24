@@ -1,7 +1,4 @@
 
-
-{{$visitor->name}}
-
 <form method="POST" action='{{ url('/profile/' . $visitor->id)}}'>
 @method('DELETE')
 @csrf

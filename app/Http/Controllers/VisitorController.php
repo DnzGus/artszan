@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Visitor;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class VisitorController extends Controller
 {
@@ -54,8 +55,10 @@ class VisitorController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
+    {   
+        $id = Auth::id();
         $visitor = Visitor::find($id);
+
         return view('visitor.edit', compact('visitor'));
     }
 
@@ -82,5 +85,18 @@ class VisitorController extends Controller
         $visitor->delete();
 
         return redirect()->route('home');
+    }
+
+    public function updatePass(){
+
+        $id = Auth::id();
+
+        $visitor = Visitor::find($id);
+
+        return view('visitor.changePassword', compact('visitor'));
+    }
+
+    public function storePass(string $id){
+        
     }
 }

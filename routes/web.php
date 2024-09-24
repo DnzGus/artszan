@@ -21,7 +21,13 @@ Route::get('/profile/create', [VisitorController::class, 'create'])->name('profi
 
 Route::post('/profile', [VisitorController::class, 'store'])->name('profile.store');
 
+Route::get('/profile/changepassword', [VisitorController::class, 'updatePass'])->name('profile.changepassword');
+
+Route::put('/profile/{id}', [VisitorController::class, 'storePass'])->name('profile.storepassword');
+
 Route::get('/profile/{id}', [VisitorController::class, 'show'])->name('profile.show');
+
+Route::get('/profile/{id}/edit',[VisitorController::class, 'edit'])->name('profile.edit');
 
                                 //tags//
 
@@ -32,7 +38,7 @@ Route::get('/tag/create', [VisitorController::class, 'create'])->name('tag.regis
 Route::post('/tag', [VisitorController::class, 'store'])->name('tag.store');
 
 Route::get('/tag/{id}', [VisitorController::class, 'show'])->name('tag.show');
-=======
+
 Route::get('/profile/{id}/edit', [VisitorController::class, 'edit'])->name('profile.edit');
 
 Route::put('/profile/{id}', [VisitorController::class, 'update'])->name('profile.update');
