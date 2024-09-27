@@ -317,7 +317,7 @@ return [
         ],
         [
             'text' => 'Tags',
-            'url' => '/tags',
+            'url' => '/tag',
             'icon' => 'far fa-fw fa-file',
             // 'label' => 4,
             'label_color' => 'success',
