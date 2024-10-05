@@ -13,22 +13,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-                                 //visitor//
-
-Route::get('/profile', [VisitorController::class, 'index'])->name('profile.index');
-
-Route::get('/profile/create', [VisitorController::class, 'create'])->name('profile.register');
-
-Route::post('/profile', [VisitorController::class, 'store'])->name('profile.store');
-
-Route::get('/profile/changepassword', [VisitorController::class, 'updatePass'])->name('profile.changepassword');
-
-Route::put('/profile/{id}', [VisitorController::class, 'storePass'])->name('profile.storepassword');
-
-Route::get('/profile/{id}', [VisitorController::class, 'show'])->name('profile.show');
-
-Route::get('/profile/{id}/edit',[VisitorController::class, 'edit'])->name('profile.edit');
-
                                 //tags//
 
 Route::get('tag', [TagController::class, 'index'])->name('tag.index');
