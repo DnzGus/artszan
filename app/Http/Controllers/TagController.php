@@ -31,7 +31,6 @@ class TagController extends Controller
     {
         $tag = new Tag();
         $tag->name = $request->name;
-        $tag->description = $request->description;
 
         $tag->save();
 
@@ -66,7 +65,6 @@ class TagController extends Controller
         $tag = Tag::find($id);
 
         $tag->name = $request->name;
-        $tag->description = $request->description;
 
         $tag->save();
 
@@ -81,7 +79,7 @@ class TagController extends Controller
         $tag = Tag::find($id);
 
         $tag->delete();
-        
+
         return redirect()->route('tag.index');
     }
 }

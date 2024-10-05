@@ -1,10 +1,26 @@
-<form method="POST" action="{{ URL('/tag/' . $tag->id)}}">
- @csrf
- @method('PUT')
+@extends('adminlte::page')
 
-  <label for="name">Name:</label><br>
-  <input type="text" name="name" placeholder="{{$tag->name}}"><br>
-  <label for="description">Description:</label>
-  <textarea type="textarea" name="description" placeholder="{{$tag->description}}"></textarea>
-  <input type="submit" value="Submit">
-</form>
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <form method="POST" action="{{ url('/tag/' . $tag->id) }}">
+                    @method('PUT')
+                    @csrf
+
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" value="{{ $tag->name }}">
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success">Enviar</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+@endsection
