@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\PostController;
 
 
 Route::get('/', function () {
@@ -15,16 +16,34 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
                                 //tags//
 
-Route::get('tag', [TagController::class, 'index'])->name('tag.index');
+Route::middleware(['can:is_admin'])->group(function () {
 
-Route::get('/tag/create', [TagController::class, 'create'])->name('tag.register');
+    
+    Route::get('/tag', [TagController::class, 'index'])->name('tag.index');
+    
+    Route::get('/tag/create', [TagController::class, 'create'])->name('tag.register');
+    
+    Route::post('/tag', [TagController::class, 'store'])->name('tag.store');
+    
+    Route::get('/tag/{id}', [TagController::class, 'show'])->name('tag.show');
+    
+    Route::get('/tag/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
+    
+    Route::put('/tag/{id}', [TagController::class, 'update'])->name('tag.update');
+    
+    Route::delete('tag/{id}', [TagController::class, 'destroy'])->name('tag.destroy');
+    
+});
+                                //imagens//
 
-Route::post('/tag', [TagController::class, 'store'])->name('tag.store');
+Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 
-Route::get('/tag/{id}', [TagController::class, 'show'])->name('tag.show');
+Route::post('/post', [PostController::class, 'store'])->name('post.store');
 
-Route::get('/tag/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 
-Route::put('/tag/{id}', [TagController::class, 'update'])->name('tag.update');
+Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
 
-Route::delete('tag/{id}', [TagController::class, 'destroy'])->name('tag.destroy');
+Route::put('/post/{id}', [PostController::class, 'update'])->name('post.update');
+
+Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');

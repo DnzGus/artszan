@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    @can('isAdmin')
+                    <p>Você é admin</p>
+                    @else
+                    <p>Você é membro comum</p>
+                    @endcan
                 </div>
             </div>
         </div>
