@@ -23,10 +23,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $tags = $request->tags;
         $contents = $request->file('image');
-        
+
         $post = new Post();
-        $post->tags_id = $request->tag;
+
+        //transformando as tags em array e json
+        $jsonTags = [];
+        foreach($tags as $tag){
+            $jsonTags[] = $tag;
+        }
+        $post->tags_id = $jsonTags;
+        
         $post->user_id = Auth::id();
         $post->title = $request->title;
         $post->description = $request->description;

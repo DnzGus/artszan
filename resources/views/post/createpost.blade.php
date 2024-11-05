@@ -30,11 +30,12 @@
               </div>
               <div class="mb-3">
                 <label for="tag">Escolha a tag:</label>
-                  <select name="tag" class="form-control" id="">
-                    @foreach($tags as $value) 
-                    <option value="{{$value->id}}"> {{$value->name}} </option>
-                    @endforeach
-                  </select>
+                <div class="d-flex flex-row justify-content-between">
+                  @foreach($tags as $value)
+                  <input type="checkbox" id="{{$value->id}}" name="tags[]" value="{{$value->id}}">
+                  <label for="{{$value->id}}">{{$value->name}}</label><br>
+                  @endforeach
+                </div>
                   <select name="nsfw" class="form-control" id="">
                    <option value="0">Não</option>
                     <option value="1">Sim</option>

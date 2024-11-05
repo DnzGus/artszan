@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('tags_id');
+            $table->json('tags_id');
             $table->bigInteger('user_id');
             $table->text('title');
             $table->longText('description');
             $table->longText('image');
-            $table->bigInteger('likes');
+            $table->bigInteger('likes')->default('0');
             $table->boolean('nsfw')->default('0');
             $table->boolean('private')->default('0');
             $table->timestamps();

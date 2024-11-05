@@ -12,6 +12,10 @@ class Post extends Model
     
     protected $table = 'Posts';
 
+    protected $casts = [
+        'tags_id' => 'json',
+    ];
+
     public function tag(): HasOne
     {
         return $this->hasOne(Tag::class, 'id', 'tags_id');

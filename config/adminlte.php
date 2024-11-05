@@ -323,6 +323,13 @@ return [
             'label_color' => 'success',
             'can' => 'isAdmin',
         ],
+        [
+            'text' => 'Post',
+            'url' => '/post/create',
+            'icon' => 'far fa-fw fa-file',
+            // 'label' => 4,
+            'label_color' => 'success',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
