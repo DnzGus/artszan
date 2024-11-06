@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->text('title');
             $table->longText('description');
-            $table->longText('image');
+            $table->json('images');
             $table->bigInteger('likes')->default('0');
             $table->boolean('nsfw')->default('0');
             $table->boolean('private')->default('0');

@@ -14,6 +14,7 @@ class Post extends Model
 
     protected $casts = [
         'tags_id' => 'json',
+        'images' => 'json'
     ];
 
     public function tag(): HasOne

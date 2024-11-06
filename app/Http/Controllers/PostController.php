@@ -23,11 +23,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $tags = $request->tags;
-        $contents = $request->file('image');
-
+        
         $post = new Post();
-
+        
+        $tags = $request->tags;
         //transformando as tags em array e json
         $jsonTags = [];
         foreach($tags as $tag){
@@ -35,10 +34,20 @@ class PostController extends Controller
         }
         $post->tags_id = $jsonTags;
         
+        //tranformando as imagens em base64
+        $totalImages = count($request->images);
+        $jsonImages = []; 
+        for($i = 0; $i < $totalImages; $i++){
+            $content = $request->file("images");
+            $image = file_get_contents($content[$i]);
+            $image64 = base64_encode($image);
+            $jsonImages[] = $image64;
+        }
+
+        $post->images = $jsonImages;
         $post->user_id = Auth::id();
         $post->title = $request->title;
         $post->description = $request->description;
-        $post->image = base64_encode(file_get_contents($contents));
         $post->nsfw = $request->nsfw;
 
         $post->save();

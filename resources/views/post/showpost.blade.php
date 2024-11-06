@@ -20,7 +20,7 @@
                                 <th>Categoria</th>
                                 <th>Título</th>
                                 <th class="text-center">Conteudo</th>
-                                <th>é porno</th>
+                                <th>nsfw</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,8 +32,10 @@
                                 </tr>
                             </tbody>
                         </table>
-                        @if($post->image)
-                        <img src="data:image/png;base64,{{ $post->image }}" alt="" />
+                        @if($post->images)
+                        @foreach($post->images as $value)
+                        <img src="data:image/png;base64,{{ $value }}" alt="" />
+                        @endforeach
                         @else
                         <p>sem imagem</p>
                         @endif
