@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\FeedController;
 
 
 Route::get('/', function () {
@@ -16,7 +17,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
                                 //tags//
 
-Route::middleware(['can:is_admin'])->group(function () {
+Route::middleware(['can:isAdmin'])->group(function () {
 
     
     Route::get('/tag', [TagController::class, 'index'])->name('tag.index');
@@ -34,7 +35,7 @@ Route::middleware(['can:is_admin'])->group(function () {
     Route::delete('tag/{id}', [TagController::class, 'destroy'])->name('tag.destroy');
     
 });
-                                //imagens//
+                                //posts//
 
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 
@@ -47,3 +48,7 @@ Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit'
 Route::put('/post/{id}', [PostController::class, 'update'])->name('post.update');
 
 Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+
+                                //feed//
+
+Route::get('/feed', [FeedController::class, 'feed'])->name('feed.index');

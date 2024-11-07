@@ -41,7 +41,7 @@
                     <option value="1">Sim</option>
                   </select>
                 <label for="image" class="form-label">Insira a imagem:</label>
-                <input type="file" name="images[]" multiple>
+                <br><input type="file" name="images[]" multiple><br>
                 <label for="title" class="form-label">Digite o titulo:</label>
                 <input placeholder="title" type="text" class="form-control" id="exampleInputEmail1" name="title">
                 <label for="description">Digite o conteúdo</label>
