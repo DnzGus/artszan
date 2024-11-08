@@ -1,6 +1,7 @@
 @foreach($posts as $post)
 <br>--------------------------------------------------------------<br>
 {{$post->id}}
+{{$post->user->name}}
 {{$post->title}}
  @for($i = 0; $i < count($post->tags_id); $i++)
   {{$tags[$i]->name}}

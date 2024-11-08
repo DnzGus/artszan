@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Gabriel Lopes',
             'email' => 'fernandes.g@csi.com',
+            'dob' => date("Y-n-d"),
             'password' => Hash::make('12345678'),
             'profile' => 'admin'
         ]);
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Gustavo Diniz',
             'email' => 'gus@csi.com',
+            'dob' => date("Y-n-d"),
             'password' => Hash::make('12345678'),
             'profile' => 'admin'
         ]);
@@ -32,6 +34,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Gabriel Pereira',
             'email' => 'gb@csi.com',
+            'dob' => date("Y-n-d"),
             'password' => Hash::make('12345678'),
             'profile' => 'admin'
         ]);
@@ -39,6 +42,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Rogério',
             'email' => 'rogerio@csi.com',
+            'dob' => date("Y-n-d"),
             'password' => Hash::make('12345678'),
             'profile' => 'admin'
         ]);
@@ -46,6 +50,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Teste',
             'email' => 'teste@csi.com',
+            'dob' => date("Y-n-d"),
             'password' => Hash::make('12345678'),
             'profile' => 'user'
         ]);
@@ -53,6 +58,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'André Neves',
             'email' => 'andr@andr.com.br',
+            'dob' => date("Y-n-d"),
             'password' => Hash::make('123456789'),
             'profile' => 'admin'
         ]);
