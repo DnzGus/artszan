@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    protected $table = 'Tags';
-
     use HasFactory;
+
+    protected $casts = [
+        'id' => 'json',
+    ];
+    
+    protected $table = 'Tags';
 }
