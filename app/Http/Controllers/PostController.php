@@ -61,7 +61,8 @@ class PostController extends Controller
     public function show(string $id)
     {
         $post = Post::find($id);
-        return view('post.showpost', compact('post'));
+        // $tags = Tag::find(); ajeitar pra buscar as tags certas!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        return view('post.showpost', compact('post','tags'));
     }
 
     /**
@@ -81,7 +82,17 @@ class PostController extends Controller
     {
 
         $post = Post::find($id);
-        $post->tags_id = $request->tag;
+        $tags = $request->tags;
+
+        //transformando as tags em array e json
+        $jsonTags = [];
+        foreach($tags as $tag){
+            $jsonTags[] = $tag;
+        }
+
+        $post->tags_id = $jsonTags;
+        
+        $post->user_id = Auth::id();
         $post->title = $request->title;
         $post->description = $request->description;
         $post->nsfw = $request->nsfw;
