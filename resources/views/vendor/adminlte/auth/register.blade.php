@@ -56,7 +56,9 @@
         {{-- DOB --}}
         <div class="input-group mb-3">
             <input type="date" name="dob" class="form-control @error('dob') is-invalid @enderror" max="{{ (string) date("Y-n-d") }}"
-                   value="{{ (string) date("Y-n-d") }}" autofocus>
+            value="{{ (string) date("Y-n-d") }}" autofocus>
+            <input type="hidden" name="tomorrow" class="form-control @error('dob') is-invalid @enderror"
+            value="{{ (string) date('Y-n-d', strtotime('+1 day'))}}" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">  
