@@ -26,7 +26,7 @@
                         <tbody>
                                 <tr>
                                     <th scope="row"> @for($i = 0; $i < count($post->tags_id); $i++)
-                                        {{$tags[$i]->name}}
+                                        {{$tags[$i]->name}} 
                                         @endfor</th>
                                     <td>{{$post->title}}</td>
                                     <td class="d-flex flex-column justify-content-center">{{$post->description}}</td>

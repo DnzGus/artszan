@@ -61,7 +61,10 @@ class PostController extends Controller
     public function show(string $id)
     {
         $post = Post::find($id);
-        // $tags = Tag::find(); ajeitar pra buscar as tags certas!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        $tags = [];
+        foreach($post->tags_id as $tag){
+            $tags[] = Tag::find($tag);
+        }
         return view('post.showpost', compact('post','tags'));
     }
 
