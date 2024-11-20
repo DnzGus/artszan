@@ -5,6 +5,8 @@ use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\AlbumController;
+
 
 
 Route::get('/', function () {
@@ -52,3 +54,9 @@ Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.dest
                                 //feed//
 
 Route::get('/feed', [FeedController::class, 'feed'])->name('feed.index');
+
+Route::get('/album/create', [AlbumController::class, 'create'])->name('album.create');
+
+Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
+
+Route::get('/album/{id}', [AlbumController::class, 'show'])->name('album.show');

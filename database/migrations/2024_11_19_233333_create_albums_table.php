@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('albums', function (Blueprint $table) {
             $table->id();
-            $table->json('tags_id');
-            $table->bigInteger('user_id');
             $table->text('title');
-            $table->longText('description');
-            $table->bigInteger('likes')->default('0');
-            $table->boolean('nsfw')->default('0');
-            $table->boolean('private')->default('0');
+            $table->bigInteger('user_id');
+            $table->json('images_id');
+            $table->boolean('private');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('albums');
     }
 };

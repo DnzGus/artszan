@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -23,7 +24,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        
         $post = new Post();
         
         $tags = $request->tags;
@@ -34,23 +34,25 @@ class PostController extends Controller
         }
         $post->tags_id = $jsonTags;
         
-        //tranformando as imagens em base64
-        $totalImages = count($request->images);
-        $jsonImages = []; 
-        for($i = 0; $i < $totalImages; $i++){
-            $content = $request->file("images");
-            $image = file_get_contents($content[$i]);
-            $image64 = base64_encode($image);
-            $jsonImages[] = $image64;
-        }
-
-        $post->images = $jsonImages;
+        
+        
+        
         $post->user_id = Auth::id();
         $post->title = $request->title;
         $post->description = $request->description;
         $post->nsfw = $request->nsfw;
-
+        
         $post->save();
+        
+        $totalImages = count($request->images);
+        for($i = 0; $i < $totalImages; $i++){
+            $image = new Image();
+            $imageFile = file_get_contents($request->images[$i]);
+            $image64 = base64_encode($imageFile);
+            $image->image = $image64;
+            $image->post_id = $post->id;
+            $image->save();
+        }
 
         return redirect()->route('post.create');
     }
