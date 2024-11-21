@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Image;
+use App\Models\Album;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -24,10 +25,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Post();
         
-        $tags = $request->tags;
+        $post = new Post();
         //transformando as tags em array e json
+        $tags = $request->tags;
         $jsonTags = [];
         foreach($tags as $tag){
             $jsonTags[] = $tag;
@@ -62,6 +63,10 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
+        $user = Auth::id();
+
+        $albums = Album::where('user_id', $user)->get();
+
         $post = Post::find($id);
         $tags = [];
         foreach($post->tags_id as $tag){
@@ -107,6 +112,19 @@ class PostController extends Controller
         return redirect()->route('home');
     }
 
+    public function saveInAlbum(string $id){
+
+        $user = Auth::id();
+
+        $album = Album::find($id);
+
+        $post = Post::find($id);
+        $tags = [];
+        foreach($post->tags_id as $tag){
+            $tags[] = Tag::find($tag);
+        }
+        return view('post.saveInAlbum', compact('post','tags','album'));
+    }
     /**
      * Remove the specified resource from storage.
      */

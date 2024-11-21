@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="d-flex text-left my-3">
-                <form action='{{ url('/home')}}'>
+                <form action='{{ url('/post/' . $post->id)}}'>
                     <input class="btn btn-secondary" role="button" value="Retornar" type="submit" ></input>
                 </form>
             </div>
@@ -34,10 +34,17 @@
                                 </tr>
                             </tbody>
                         </table>
-                        @foreach($post->images as $image)
-                            <img src="data:image/png;base64,{{ $image->image }}" alt="" / height="200" id="image">
+                        <form action="{{url('/album/' . $album->id . '/edit')}}" method="">
+                         @method('PUT')
+                         @csrf
+                         @foreach($post->images as $postimage)
+                         <input type="checkbox" name="images[]" value="{{ $postimage->id }}">
+                         <img src="data:image/png;base64,{{$postimage->image}}" alt="imagem do usuario" height="200" />
+                        </input>
                         @endforeach
-                            <br><a href="{{URL('/post/' . $post->id . '/album')}}">Salvar em album existente</a>
+                        <button type="submit"></button>
+                        {{-- <br><a href="{{URL('/post/' . $post->id . '/album')}}">Salvar em album existente</a> --}}
+                       </form>
                     </div>
     </div>
 </div>

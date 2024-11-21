@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class AlbumController extends Controller
 {
+    public function index(){
+
+        $user = Auth::id();
+        $albums = Album::where('user_id', $user)->get();
+
+        return view('album.indexalbum', compact('albums'));
+    }
     public function create(){
 
         $user = Auth::id();
@@ -31,6 +38,21 @@ class AlbumController extends Controller
         $album->save();
 
         return redirect()->route('album.create');
+    }
+
+    public function edit(string $id, request $request){
+        
+        $album = Album::find($id);
+
+        $images = $album->images_id;
+
+        foreach($request->images as $idImages){
+            array_push($images, $idImages);
+        }
+
+
+        $album->images_id = $images;
+        $album->save();
     }
 
     public function show(string $id){

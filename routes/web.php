@@ -45,6 +45,8 @@ Route::post('/post', [PostController::class, 'store'])->name('post.store');
 
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 
+Route::get('/post/album/{id}', [PostController::class, 'saveInAlbum'])->name('post.saveInAlbum');
+
 Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
 
 Route::put('/post/{id}', [PostController::class, 'update'])->name('post.update');
@@ -55,8 +57,12 @@ Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.dest
 
 Route::get('/feed', [FeedController::class, 'feed'])->name('feed.index');
 
+Route::get('/album', [AlbumController::class, 'index'])->name('album.index');
+
 Route::get('/album/create', [AlbumController::class, 'create'])->name('album.create');
 
 Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
 
 Route::get('/album/{id}', [AlbumController::class, 'show'])->name('album.show');
+
+Route::get('/album/{id}/edit', [AlbumController::class, 'edit'])->name('album.edit');

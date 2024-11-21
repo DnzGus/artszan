@@ -324,6 +324,13 @@ return [
             'can' => 'isAdmin',
         ],
         [
+            'text' => 'Albuns',
+            'url' => '/Album',
+            'icon' => 'far fa-fw fa-file',
+            // 'label' => 4,
+            'label_color' => 'success',
+        ],
+        [
             'text' => 'Post',
             'url' => '/post/create',
             'icon' => 'far fa-fw fa-file',
