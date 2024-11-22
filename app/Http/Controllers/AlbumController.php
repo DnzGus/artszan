@@ -53,6 +53,8 @@ class AlbumController extends Controller
 
         $album->images_id = $images;
         $album->save();
+
+        return redirect()->route('album.index');
     }
 
     public function show(string $id){

@@ -72,7 +72,7 @@ class PostController extends Controller
         foreach($post->tags_id as $tag){
             $tags[] = Tag::find($tag);
         }
-        return view('post.showpost', compact('post','tags'));
+        return view('post.showpost', compact('post','tags','albums'));
     }
 
     /**
@@ -112,11 +112,11 @@ class PostController extends Controller
         return redirect()->route('home');
     }
 
-    public function saveInAlbum(string $id){
+    public function saveInAlbum(string $id, string $idAlbum){
 
         $user = Auth::id();
 
-        $album = Album::find($id);
+        $album = Album::find($idAlbum);
 
         $post = Post::find($id);
         $tags = [];

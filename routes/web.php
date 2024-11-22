@@ -45,7 +45,7 @@ Route::post('/post', [PostController::class, 'store'])->name('post.store');
 
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 
-Route::get('/post/album/{id}', [PostController::class, 'saveInAlbum'])->name('post.saveInAlbum');
+Route::get('/post/album/{id}/{idAlbum}', [PostController::class, 'saveInAlbum'])->name('post.saveInAlbum');
 
 Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
 

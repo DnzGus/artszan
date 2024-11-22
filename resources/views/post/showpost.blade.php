@@ -35,9 +35,11 @@
                             </tbody>
                         </table>
                         @foreach($post->images as $image)
-                            <img src="data:image/png;base64,{{ $image->image }}" alt="" / height="200" id="image">
+                            <img src="data:image/png;base64,{{ $image->image }}" alt="{{$image->id}}" / height="200" id="image">
                         @endforeach
-                            <br><a href="{{URL('/post/' . $post->id . '/album')}}">Salvar em album existente</a>
+                        @foreach($albums as $album)
+                            <br><a href="{{URL('/post/album/' . $post->id . '/' . $album->id )}}">{{$album->title}}</a>
+                        @endforeach
                     </div>
     </div>
 </div>

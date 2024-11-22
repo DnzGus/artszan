@@ -35,16 +35,15 @@
                             </tbody>
                         </table>
                         <form action="{{url('/album/' . $album->id . '/edit')}}" method="">
-                         @method('PUT')
-                         @csrf
-                         @foreach($post->images as $postimage)
-                         <input type="checkbox" name="images[]" value="{{ $postimage->id }}">
-                         <img src="data:image/png;base64,{{$postimage->image}}" alt="imagem do usuario" height="200" />
-                        </input>
-                        @endforeach
-                        <button type="submit"></button>
-                        {{-- <br><a href="{{URL('/post/' . $post->id . '/album')}}">Salvar em album existente</a> --}}
-                       </form>
+                            @method('PUT')
+                            @csrf
+                            @foreach($post->images as $postimage)
+                            <input type="checkbox" name="images[]" value="{{ $postimage->id }}">
+                                <img src="data:image/png;base64,{{$postimage->image}}" alt="{{$postimage->id}}"" height="200" />
+                            </input>
+                            @endforeach
+                            <button type="submit"></button>
+                        </form>
                     </div>
     </div>
 </div>
