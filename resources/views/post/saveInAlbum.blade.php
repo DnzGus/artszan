@@ -34,7 +34,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <form action="{{url('/album/' . $album->id . '/edit')}}" method="">
+                        <form action="{{url('/album/' . $album->id)}}" method="POST">
                             @method('PUT')
                             @csrf
                             @foreach($post->images as $postimage)

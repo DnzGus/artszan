@@ -63,11 +63,17 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
+        $post = Post::find($id);
         $user = Auth::id();
 
+        if($post->private != 0){
+            if($user != $post->user_id){
+                return redirect()->route('home');
+            }
+        }
         $albums = Album::where('user_id', $user)->get();
 
-        $post = Post::find($id);
+        
         $tags = [];
         foreach($post->tags_id as $tag){
             $tags[] = Tag::find($tag);
@@ -80,8 +86,12 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
+        $user = Auth::id();
         $tags = Tag::orderBy('name', 'ASC')->get();
         $post = Post::find($id);
+        if($user != $post->user_id){
+            return redirect()->route('home');
+        }
         return view('post.editpost', compact('tags', 'post'));
     }
 

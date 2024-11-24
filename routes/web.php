@@ -6,6 +6,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ProfileController;
 
 
 
@@ -53,9 +54,7 @@ Route::put('/post/{id}', [PostController::class, 'update'])->name('post.update')
 
 Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.destroy');
 
-                                //feed//
-
-Route::get('/feed', [FeedController::class, 'feed'])->name('feed.index');
+                                //album//
 
 Route::get('/album', [AlbumController::class, 'index'])->name('album.index');
 
@@ -66,3 +65,19 @@ Route::post('/album', [AlbumController::class, 'store'])->name('album.store');
 Route::get('/album/{id}', [AlbumController::class, 'show'])->name('album.show');
 
 Route::get('/album/{id}/edit', [AlbumController::class, 'edit'])->name('album.edit');
+
+Route::put('/album/{id}', [AlbumController::class, 'update'])->name('album.update');
+
+Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.destroy');
+
+                                //feed//
+
+Route::get('/feed', [FeedController::class, 'feed'])->name('feed.index');
+
+                                //perfil//
+
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
+Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');

@@ -40,16 +40,47 @@ class AlbumController extends Controller
         return redirect()->route('album.create');
     }
 
-    public function edit(string $id, request $request){
+    public function edit(string $id){
+
+        $user = Auth::id();
+        $album = Album::find($id);
+        if($user != $album->user_id){
+            return redirect()->route('home');
+        }
+        $posts = Post::all();
+
+        return view('album.editAlbum', compact('album','posts'));
+    }
+
+    public function update(string $id, request $request){
         
         $album = Album::find($id);
 
         $images = $album->images_id;
 
-        foreach($request->images as $idImages){
-            array_push($images, $idImages);
+        //edicao do album
+        if($request->private){
+            $album->private = $request->private;
+        }
+        if($request->title){
+            $album->title = $request->title;
+        }
+        if($request->removeImages){
+            foreach($request->removeImages as $removeId){
+                foreach($album->images_id as $key => $imageId){
+                    if($imageId == $removeId){
+                        $images[$key] = null;
+                    }
+                }
+            }
         }
 
+        //recebendo imagem de um post
+        if($request->images){
+            foreach($request->images as $idImages){
+            array_push($images, $idImages);
+            }
+        }
 
         $album->images_id = $images;
         $album->save();
@@ -59,10 +90,23 @@ class AlbumController extends Controller
 
     public function show(string $id){
 
+        $user = Auth::id();
         $album = Album::find($id);
 
+        if($album->private != 0){
+            if($user != $album->user_id){
+                return redirect()->route('home');
+            }
+        }
         $posts = Post::all();
 
         return view('album.showalbum', compact('album','posts'));
+    }
+
+    public function destroy(string $id)
+    {
+        $album = ALbum::find($id);
+        $album->delete();
+        return redirect()->route('home');
     }
 }
