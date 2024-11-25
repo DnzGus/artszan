@@ -79,6 +79,10 @@ Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.d
 
 Route::get('/feed', [FeedController::class, 'feed'])->name('feed.index');
 
+Route::get('/feed/tag/{idSearch}',[FeedController::class, 'searchTag'])->name('feed.search.tag');
+
+Route::get('/feed/user/{idSearch}',[FeedController::class, 'searchUser'])->name('feed.search.user');
+
                                 //perfil//
 
 Route::get('/profile', [ProfileController::class, 'redir'])->name('profile.redir');
@@ -94,7 +98,5 @@ Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile
                                 //follow//
 
 Route::get('/follow/{id}',[FollowerController::class, 'follow'])->name('follow');
-
-// Route::get('/teste',[FollowerController::class, 'getFollows'])->name('teste');
 
 //TO-DO NSFW(IMPORTANTE) FILTROS(IMPORTANTE)
