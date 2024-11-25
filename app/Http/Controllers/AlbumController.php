@@ -78,6 +78,9 @@ class AlbumController extends Controller
         //recebendo imagem de um post
         if($request->images){
             foreach($request->images as $idImages){
+            if(in_array($idImages,$images)){
+                continue;
+            }
             array_push($images, $idImages);
             }
         }
