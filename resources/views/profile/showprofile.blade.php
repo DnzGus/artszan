@@ -11,4 +11,9 @@
 {{$profile->dob}}<br>
 
 <a href="{{URL('/profile/' . $profile->id . '/edit')}}">Editar o perfil</a>
+
+<div class="container d-flex ">
+ <h3>Segue:<h4>{{$totalFollows}}</h4></h3>
+ <h3>Seguidores:<h4>{{$totalFollowers}}</h4></h3>
+</div>
 @endsection

@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Image;
+use App\Models\Comment;
 use App\Models\Album;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -65,6 +67,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $user = Auth::id();
+        $comments = Comment::where('post_id', $id)->get();
+        $totalComments = count(comment::where('post_id', $id)->get());
+        $likes = count(Like::where('post_id', $id)->get());
 
         if($post->private != 0){
             if($user != $post->user_id){
@@ -78,7 +83,7 @@ class PostController extends Controller
         foreach($post->tags_id as $tag){
             $tags[] = Tag::find($tag);
         }
-        return view('post.showpost', compact('post','tags','albums'));
+        return view('post.showpost', compact('post','tags','albums','comments','likes'));
     }
 
     /**
@@ -120,6 +125,30 @@ class PostController extends Controller
         $post->save();
 
         return redirect()->route('home');
+    }
+
+    public function comment(request $request){
+
+        $user = Auth::id();
+        $comment = new Comment();
+
+        $comment->user_id = $user;
+        $comment->post_id = $request->post_id;
+        $comment->comment = $request->comment;
+
+        $comment->save();
+
+        return redirect()->route('post.show', ['id' => $request->post_id]);
+    }
+
+    public function like(request $request){
+        $like = new Like();
+
+        $like->user_id = Auth::id();
+        $like->post_id = $request->post_id;
+        $like->save();
+
+        return redirect()->route('post.show', ['id' => $request->post_id]);
     }
 
     public function saveInAlbum(string $id, string $idAlbum){

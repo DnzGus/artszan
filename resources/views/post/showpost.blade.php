@@ -40,6 +40,21 @@
                         @foreach($albums as $album)
                             <br><a href="{{URL('/post/album/' . $post->id . '/' . $album->id )}}">{{$album->title}}</a>
                         @endforeach
+                        <form class="my-auto mx-3" method="POST" action='{{ url("/post/" . $post->id) . '/comment'}}'>
+                            @csrf
+                            <input type="text" name="comment" class="form-control">
+                            <input type="hidden" name="post_id" value="{{$post->id}}" class="form-control">
+                            <input class="btn btn-danger" role="button" value="enviar" type="submit" ></input>
+                        </form>
+                        <form class="my-auto mx-3" method="POST" action='{{ url("/post/" . $post->id) . '/like'}}'>
+                            @csrf
+                            <input type="hidden" name="post_id" value="{{$post->id}}" class="form-control">
+                            <input class="btn btn-danger" role="button" value="like" type="submit"></input>
+                        </form>
+                        @foreach($comments as $comment)
+                            Nome:{{$comment->user->name}}--->{{$comment->comment}}<br>
+                        @endforeach
+                        {{$likes}}
                     </div>
     </div>
 </div>

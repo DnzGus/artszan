@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FollowerController;
 
 
 
@@ -46,6 +47,10 @@ Route::post('/post', [PostController::class, 'store'])->name('post.store');
 
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 
+Route::post('/post/{id}/comment', [PostController::class, 'comment'])->name('post.comment');
+
+Route::post('/post/{id}/like', [PostController::class, 'like'])->name('post.like');
+
 Route::get('/post/album/{id}/{idAlbum}', [PostController::class, 'saveInAlbum'])->name('post.saveInAlbum');
 
 Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
@@ -56,7 +61,7 @@ Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.dest
 
                                 //album//
 
-Route::get('/album', [AlbumController::class, 'index'])->name('album.index');
+Route::get('/albums', [AlbumController::class, 'index'])->name('album.index');
 
 Route::get('/album/create', [AlbumController::class, 'create'])->name('album.create');
 
@@ -76,8 +81,20 @@ Route::get('/feed', [FeedController::class, 'feed'])->name('feed.index');
 
                                 //perfil//
 
-Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/profile', [ProfileController::class, 'redir'])->name('profile.redir');
+
+Route::get('/profiles', [ProfileController::class, 'index'])->name('profile.index');
+
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
 Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
+
+                                //follow//
+
+Route::get('/follow/{id}',[FollowerController::class, 'follow'])->name('follow');
+
+// Route::get('/teste',[FollowerController::class, 'getFollows'])->name('teste');
+
+//TO-DO NSFW(IMPORTANTE) FILTROS(IMPORTANTE)
