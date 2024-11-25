@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('title');
             $table->bigInteger('user_id');
-            $table->json('images_id');
+            $table->json('images_id')->nullable();
             $table->boolean('private');
             $table->timestamps();
         });

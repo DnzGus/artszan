@@ -21,6 +21,7 @@
                                 <th>Título</th>
                                 <th class="text-center">Conteudo</th>
                                 <th>nsfw</th>
+                                <th>private</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,6 +32,7 @@
                                     <td>{{$post->title}}</td>
                                     <td class="d-flex flex-column justify-content-center">{{$post->description}}</td>
                                     <td class="d-flex flex-column justify-content-center">{{$post->nsfw}}</td>
+                                    <td class="d-flex flex-column justify-content-center">{{$post->private}}</td>
                                 </tr>
                             </tbody>
                         </table>

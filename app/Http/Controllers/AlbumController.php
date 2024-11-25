@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Album;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -32,7 +33,9 @@ class AlbumController extends Controller
         $album = new Album;
         $album->title = $request->title;
         $album->user_id = $user;
-        $album->images_id = $request->images;
+        if($request->images){
+            $album->images_id = $request->images;
+        }
         $album->private = $request->private;
 
         $album->save();
@@ -42,9 +45,10 @@ class AlbumController extends Controller
 
     public function edit(string $id){
 
-        $user = Auth::id();
+        $userId = Auth::id();
+        $user = User::find($userId);
         $album = Album::find($id);
-        if($user != $album->user_id){
+        if($userId != $album->user_id and $user->profile != 'admin'){
             return redirect()->route('home');
         }
         $posts = Post::all();
@@ -77,11 +81,18 @@ class AlbumController extends Controller
 
         //recebendo imagem de um post
         if($request->images){
+            if($images){
             foreach($request->images as $idImages){
-            if(in_array($idImages,$images)){
-                continue;
-            }
-            array_push($images, $idImages);
+                    if(in_array($idImages,$images)){
+                        continue;
+                    }
+                    array_push($images, $idImages);
+                }
+            }else{
+                $images = [];
+                foreach($request->images as $idImages){
+                    array_push($images, $idImages);
+                }
             }
         }
 
@@ -93,17 +104,20 @@ class AlbumController extends Controller
 
     public function show(string $id){
 
-        $user = Auth::id();
+        $userId = Auth::id();
+        $user = User::find($userId);
         $album = Album::find($id);
-
-        if($album->private != 0){
-            if($user != $album->user_id){
-                return redirect()->route('home');
+        if($album){
+            if($album->private != 0){
+                if($userId != $album->user_id and $user->profile != 'admin'){
+                    return redirect()->route('home');
+                }
             }
+            $posts = Post::all();
+            
+            return view('album.showalbum', compact('album','posts'));
         }
-        $posts = Post::all();
-
-        return view('album.showalbum', compact('album','posts'));
+        return redirect()->route('home');
     }
 
     public function destroy(string $id)

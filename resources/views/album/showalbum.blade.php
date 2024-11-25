@@ -28,6 +28,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        @if($album->images_id)
                         @foreach($album->images_id as $imageId)
                             @foreach($posts as $post)
                                 @foreach($post->images as $image)
@@ -37,6 +38,7 @@
                                 @endforeach
                             @endforeach
                         @endforeach
+                        @endif
                     </div>
     </div>
 </div>

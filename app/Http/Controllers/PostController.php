@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\Post;
 use App\Models\Image;
 use App\Models\Comment;
@@ -44,6 +45,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->description = $request->description;
         $post->nsfw = $request->nsfw;
+        $post->private = $request->private;
         
         $post->save();
         
@@ -65,36 +67,42 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
+        $userId = Auth::id();
+        $user = User::find($userId);
         $post = Post::find($id);
-        $user = Auth::id();
-        $comments = Comment::where('post_id', $id)->get();
-        $totalComments = count(comment::where('post_id', $id)->get());
-        $likes = count(Like::where('post_id', $id)->get());
-
-        if($post->private != 0){
-            if($user != $post->user_id){
-                return redirect()->route('home');
+        if($post){
+            if($post->private != 0){
+                if($userId != $post->user_id and $user->profile != 'admin'){
+                    return redirect()->route('home');
+                }
             }
-        }
-        $albums = Album::where('user_id', $user)->get();
 
+            $comments = Comment::where('post_id', $id)->get();
+            $totalComments = count(comment::where('post_id', $id)->get());
+            $likes = count(Like::where('post_id', $id)->get());
+            
+            $albums = Album::where('user_id', $userId)->get();
+            
         
-        $tags = [];
-        foreach($post->tags_id as $tag){
-            $tags[] = Tag::find($tag);
+            $tags = [];
+            foreach($post->tags_id as $tag){
+                $tags[] = Tag::find($tag);
+            }
+            return view('post.showpost', compact('post','tags','albums','comments','likes'));
         }
-        return view('post.showpost', compact('post','tags','albums','comments','likes'));
+        return redirect()->route('home');
     }
-
+        
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $user = Auth::id();
+        $userId = Auth::id();
+        $user = User::find($userId);
         $tags = Tag::orderBy('name', 'ASC')->get();
         $post = Post::find($id);
-        if($user != $post->user_id){
+        if($userId != $post->user_id and $user->profile != 'admin'){
             return redirect()->route('home');
         }
         return view('post.editpost', compact('tags', 'post'));
@@ -121,6 +129,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->description = $request->description;
         $post->nsfw = $request->nsfw;
+        $post->private = $request->private;
 
         $post->save();
 

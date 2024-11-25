@@ -40,6 +40,10 @@
                     <option value="0">Não</option>
                     <option value="1">Sim</option>
                   </select>
+                  <select name="private" class="form-control" id="">
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                  </select>
                 <label for="image" class="form-label">Insira a imagem:</label>
                 <br><input type="file" name="images[]" multiple><br>
                 <label for="title" class="form-label">Digite o titulo:</label>
