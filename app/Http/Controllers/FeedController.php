@@ -18,18 +18,20 @@ class FeedController extends Controller
     }
 
     public function getNews() {
+        $tags = Tag::all();
         $posts = Post::where('private', '0')->latest()->get();
-        return view('feed.indexfeed', compact('posts'));
+        return view('feed.indexfeed', compact('posts', 'tags'));
     }
 
     public function getLikeds() {
+        $tags = Tag::all();
         $userId = Auth::id();
         $likeds = Like::where('user_id', $userId)->get();
         $posts = [];
         foreach($likeds as $like){
             $posts[] = Post::find($like->post_id);
         }
-        return view('feed.indexfeed', compact('posts'));
+        return view('feed.indexfeed', compact('posts', 'tags'));
     }
 
     public function searchTag(string $idSearch){
