@@ -27,7 +27,7 @@ class AlbumController extends Controller
     }
 
     public function store(request $request){
-        
+
         $user = Auth::id();
 
         $album = new Album;
@@ -57,7 +57,7 @@ class AlbumController extends Controller
     }
 
     public function update(string $id, request $request){
-        
+
         $album = Album::find($id);
 
         $images = $album->images_id;
@@ -114,16 +114,16 @@ class AlbumController extends Controller
                 }
             }
             $posts = Post::all();
-            
+
             return view('album.showalbum', compact('album','posts'));
         }
-        return redirect()->route('home');
+        return redirect()->route('feed.index');
     }
 
     public function destroy(string $id)
     {
         $album = ALbum::find($id);
         $album->delete();
-        return redirect()->route('home');
+        return redirect()->route('feed.index');
     }
 }

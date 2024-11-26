@@ -21,21 +21,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware(['can:isAdmin'])->group(function () {
 
-    
+
     Route::get('/tag', [TagController::class, 'index'])->name('tag.index');
-    
+
     Route::get('/tag/create', [TagController::class, 'create'])->name('tag.register');
-    
+
     Route::post('/tag', [TagController::class, 'store'])->name('tag.store');
-    
+
     Route::get('/tag/{id}', [TagController::class, 'show'])->name('tag.show');
-    
+
     Route::get('/tag/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
-    
+
     Route::put('/tag/{id}', [TagController::class, 'update'])->name('tag.update');
-    
+
     Route::delete('tag/{id}', [TagController::class, 'destroy'])->name('tag.destroy');
-    
+
 });
                                 //posts//
 

@@ -17,11 +17,10 @@
                     <div class="mt-4 d-flex flex-column">
                         <div class="d-flex justify-content-center flex-row mb-2">
                             @if($post->user->profilePhoto != null)
-                            <img class="fotoPerfil rounded-circle" src="data:image/png;base64,{{$post->user->profilePhoto}} "alt="Imagem de Perfil de Usuário">
+                                <img class="fotoPerfil rounded-circle" src="data:image/png;base64,{{$post->user->profilePhoto}} "alt="Imagem de Perfil de Usuário">
                             @else
-                            <img class="fotoPerfil rounded-circle" src="{{url('/imgs/userImage.png')}}"alt="Imagem de Perfil de Usuário">
-                            
-                            @endif"
+                                <img class="fotoPerfil rounded-circle" src="{{url('/imgs/userImage.png')}}"alt="Imagem de Perfil de Usuário">
+                            @endif
                             <div class="m-4">
                                 <h5 class="nomeUsuario"><a style="color: #BEBABA" href="{{url('/profile/images/' . $post->user_id)}}">{{$post->user->name}}</a></h5>
                             </div>

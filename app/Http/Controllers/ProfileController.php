@@ -96,3 +96,4 @@ class ProfileController extends Controller
         return redirect()->route('profile.show', ['id' => $user_id]);
     }
 }
+

@@ -49,6 +49,9 @@
             <a class="btn btn-primary fw-semibold m-2" id="imagens" href="#" role="button">Imagem</a>
             <a class="btn btn-primary fw-semibold m-2" id="albuns" href="#" role="button">Albuns</a>
         </div>
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-primary fw-semibold m-2" id="albuns" href="{{ url('/album/create') }}" role="button">Criar Album</a>
+        </div>
     </div>
     <div class="mx-5 mt-5">
         <div class="row">
