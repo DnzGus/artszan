@@ -40,7 +40,7 @@ class AlbumController extends Controller
 
         $album->save();
 
-        return redirect()->route('album.create');
+        return redirect()->route('profile.showAlbums', ['id' => $user]);
     }
 
     public function edit(string $id){
@@ -59,7 +59,7 @@ class AlbumController extends Controller
     public function update(string $id, request $request){
 
         $album = Album::find($id);
-
+        $userId = Auth::id();
         $images = $album->images_id;
 
         //edicao do album
@@ -99,7 +99,7 @@ class AlbumController extends Controller
         $album->images_id = $images;
         $album->save();
 
-        return redirect()->route('album.index');
+        return redirect()->route('album.show', ['id' => $album->id]);
     }
 
     public function show(string $id){
@@ -115,7 +115,7 @@ class AlbumController extends Controller
             }
             $posts = Post::all();
 
-            return view('album.showalbum', compact('album','posts'));
+            return view('album.showalbum', compact('album','posts','user'));
         }
         return redirect()->route('feed.index');
     }

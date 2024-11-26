@@ -46,7 +46,7 @@
     </div>
     <div class="row">
         <div class="d-flex justify-content-center">
-            <a class="btn btn-primary fw-semibold m-2" id="imagens" href="{{url('/profile/images/' . $profile->id)}}" role="button">Imagem</a>
+            <a class="btn btn-primary fw-semibold m-2" id="imagens" href="#" role="button">Imagem</a>
             <a class="btn btn-primary fw-semibold m-2" id="albuns" href="{{url('/profile/albums/' . $profile->id)}}" role="button">Albuns</a>
         </div>
     </div>
