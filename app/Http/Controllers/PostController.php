@@ -19,8 +19,12 @@ class PostController extends Controller
      */
     public function create()
     {
+        if(!Auth::id()){
+            return redirect()->route('register');
+        }
+        $user = User::find(Auth::id());
         $tags = Tag::orderBy('name','ASC')->get();
-        return view('post.createpost', compact('tags'));
+        return view('post.createpost', compact('tags','user'));
     }
 
     /**
@@ -28,7 +32,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validated = $request->validate([
+            'tags' => 'required',
+            'images' => 'required',
+            'title' => 'required|min:5',
+            'description' => 'min:5',
+            ]);
+
+
         $post = new Post();
         //transformando as tags em array e json
         $tags = $request->tags;
@@ -44,9 +55,12 @@ class PostController extends Controller
         $post->user_id = Auth::id();
         $post->title = $request->title;
         $post->description = $request->description;
-        $post->nsfw = $request->nsfw;
-        $post->private = $request->private;
-        
+        if($request->nsfw == 'on'){
+            $post->nsfw = 1;
+        }
+        if($request->private == 'on'){
+            $post->private = 1;
+        }
         $post->save();
         
         $totalImages = count($request->images);
@@ -88,7 +102,7 @@ class PostController extends Controller
             foreach($post->tags_id as $tag){
                 $tags[] = Tag::find($tag);
             }
-            return view('post.showpost', compact('post','tags','albums','comments','likes'));
+            return view('post.showpost', compact('post','tags','albums','comments','likes','user'));
         }
         return redirect()->route('home');
     }
@@ -100,12 +114,14 @@ class PostController extends Controller
     {
         $userId = Auth::id();
         $user = User::find($userId);
-        $tags = Tag::orderBy('name', 'ASC')->get();
         $post = Post::find($id);
-        if($userId != $post->user_id and $user->profile != 'admin'){
-            return redirect()->route('home');
+        if($post){
+            if($userId != $post->user_id and $user->profile != 'admin'){
+                return redirect()->route('home');
+            }
+            $tags = Tag::orderBy('name', 'ASC')->get();
         }
-        return view('post.editpost', compact('tags', 'post'));
+        return view('post.editpost', compact('tags', 'post','user'));
     }
 
     /**
@@ -114,6 +130,11 @@ class PostController extends Controller
     public function update(Request $request, string $id)
     {
 
+        $validated = $request->validate([
+            'tags' => 'required',
+            'title' => 'required|min:5',
+            'description' => 'min:5',
+            ]);
         $post = Post::find($id);
         $tags = $request->tags;
 
@@ -128,12 +149,16 @@ class PostController extends Controller
         $post->user_id = Auth::id();
         $post->title = $request->title;
         $post->description = $request->description;
-        $post->nsfw = $request->nsfw;
-        $post->private = $request->private;
+        if($request->nsfw == 'on'){
+            $post->nsfw = 1;
+        }
+        if($request->private == 'on'){
+            $post->private = 1;
+        }
 
         $post->save();
 
-        return redirect()->route('home');
+        return redirect()->route('post.show', ['id' => $id]);
     }
 
     public function comment(request $request){
@@ -162,8 +187,8 @@ class PostController extends Controller
 
     public function saveInAlbum(string $id, string $idAlbum){
 
-        $user = Auth::id();
-
+        $userId = Auth::id();
+        $user = User::find($userId);
         $album = Album::find($idAlbum);
 
         $post = Post::find($id);
@@ -171,7 +196,7 @@ class PostController extends Controller
         foreach($post->tags_id as $tag){
             $tags[] = Tag::find($tag);
         }
-        return view('post.saveInAlbum', compact('post','tags','album'));
+        return view('post.saveInAlbum', compact('post','tags','album','user'));
     }
     /**
      * Remove the specified resource from storage.

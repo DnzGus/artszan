@@ -1,0 +1,177 @@
+.navbar {
+    background: linear-gradient(to bottom, #484444, #221E1E);
+}
+
+#entrar{
+    padding: 7px 40px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+}
+
+#entrar:hover{
+    background-color: #00C036;
+    color: #221E1E;
+}
+
+#registre{
+    padding: 7px 27px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+    margin: 0px 50px 0px 0px;
+}
+
+#registre:hover{
+    background-color:#00C036;
+    color:#221E1E;
+}
+
+#search{
+    background: #6A6A6A;    
+    border-radius: 50px;
+    border: 0px;
+    width: 400px;
+    color: #fff;
+    opacity: 64%;
+}
+
+#search::placeholder{
+    color: #fff;
+    opacity: 64%;
+}
+
+body{
+    background-color: #484444;
+}
+
+h1{
+    margin: 50px 0px 50px 0px;
+    color: #fff;
+    opacity: 64%;
+    display: flex;
+    justify-content: center;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+#uploadBtn2{
+    display: inline-block;
+    text-transform: uppercase;
+    color: #00C036;
+    background-color: #221E1E;
+    text-align: center;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1.5px;
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 5px 15px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+#uploadBtn2:hover{
+    background-color: #00C036;
+    color: #221E1E;
+}
+
+#titulo{
+    color: #fff;
+    opacity: 64%;
+    font-size: 22.5px;
+}
+
+#exampleFormControlInput1{
+    background-color: #221E1E;
+    border: 0px;
+    opacity: 81%;
+    color: #fff;
+    opacity: 64%;
+    border-radius: 55px;
+}
+
+#descricao{
+    color: #fff;
+    opacity: 64%;
+    font-size: 22.5px;
+}
+
+#exampleFormControlTextarea1{
+    background-color: #221E1E;
+    border: 0px;
+    opacity: 81%;
+    color: #fff;
+    opacity: 64%;
+    border-radius: 15px;
+}
+
+#nsfw{
+    color: #fff;
+    opacity: 64%;
+    font-size: 20px;
+}
+
+#flexSwitchCheckDefault{
+    height: 25px;
+    width: 50px;
+    background-color: #00C036;
+    border: 0px;
+}
+
+p{
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    opacity: 64%;
+    font-size: 22.5px;
+    margin: 30px 0px 5px 0px;
+}
+
+table{
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    opacity: 64%;
+}
+
+.form-check-input{
+    background-color: #00C036;
+}
+
+#confirmar{
+    padding: 7px 27px;
+    border-radius: 50px;
+    margin-top: 35px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+}
+
+#confirmar:hover{
+    background-color:#00C036;
+    color:#221E1E;
+}
+
+#btnUpload{
+    padding: 7px 30px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+}
+
+#btnUpload:hover{
+    background-color: #00C036;
+    color: #221E1E;
+}
+
+.imagemUsuario{
+    margin-right: 30px;
+    width: 45px;
+}

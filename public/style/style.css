@@ -1,0 +1,706 @@
+body {
+    background-color: #221E1E;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    width: 152px;
+    height: 35px;
+}
+
+.navbar {
+    background: linear-gradient(to bottom, #484444, #221E1E);
+    filter: drop-shadow(0px 0px 10px #000000);
+}
+
+#entrar {
+    padding: 7px 40px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+}
+
+#entrar:hover {
+    background-color: #00C036;
+    color: #221E1E;
+}
+
+#registre {
+    padding: 7px 27px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+    margin: 0px 50px 0px 0px;
+}
+
+#registre:hover {
+    background-color: #00C036;
+    color: #221E1E;
+}
+
+#logo {
+    margin: 0px 535px 0px 50px;
+}
+
+#search {
+    background: #6A6A6A;
+    border-radius: 50px;
+    border: 0px;
+    width: 400px;
+    color: #fff;
+    opacity: 64%;
+}
+
+#search::placeholder {
+    color: #fff;
+    opacity: 64%;
+}
+
+#aside {
+    text-emphasis-color: #A7A5A5;
+    background-color: #3E3C3C;
+    height: 700px;
+    border-radius: 20px;
+}
+
+#tituloImg {
+    background-color: #221E1E;
+}
+
+#tags {
+    background-color: #221E1E;
+}
+
+#seguir {
+    padding: 1px 15px 3px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+}
+
+#seguir:hover {
+    background-color: #00C036;
+    color: #221E1E;
+    margin-left: px;
+}
+
+.fotoPerfil {
+    width: 100px;
+    height: 100px;
+}
+
+.nomeUsuario {
+    color: #B2B1B1;
+}
+
+.cardTitulo {
+    background-color: #221E1E;
+    margin: 5px 10px 5px 10px;
+    padding: 5%;
+    border-radius: 10px;
+    color: #BEBABA;
+    width: 100%;
+    height: 400px;
+}
+
+.btn-seguir {
+    margin-left: 87px;
+}
+
+.tags {
+    background-color: #221E1E;
+    margin: 5px 10px 5px 10px;
+    padding: 2%;
+    border-radius: 10px;
+    color: #BEBABA;
+}
+
+#curtir {
+    padding: 1px 15px 3px;
+    border-radius: 50px;
+    background-color: #00C036;
+    border: 0;
+    color: #221E1E;
+}
+
+#curtir:hover {
+    color: #fff;
+}
+
+#trends a {
+    color: #A7A5A5;
+    font-size: x-large;
+}
+
+#trends a:hover {
+    color: #fff;
+}
+
+.tagsIndex {
+    height: 75px;
+    width: 75px;
+}
+
+#maisCurtidas {
+    border-radius: 20px;
+}
+
+#posts {
+    border-radius: 10px;
+}
+
+h5 {
+    color: #A7A5A5;
+}
+
+h5:hover {
+    color: #fff;
+}
+
+#textoAlbum {
+    color: #BEBABA;
+}
+
+#alterar {
+    padding: 7px 20px;
+    border-radius: 50px;
+    background-color: #00C036;
+    border: 0;
+    color: #221E1E;
+    margin-top: 38px;
+}
+
+#alterar:hover {
+    color: #fff;
+}
+
+.input {
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 40px;
+    border-color: #BEBABA;
+    background-color: #484444;
+    padding: 0px 13px 0px 13px;
+    height: 38px;
+}
+
+.inputEmail {
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 40px;
+    border-color: #BEBABA;
+    background-color: #484444;
+    padding: 0px 13px 0px 13px;
+    height: 38px;
+    width: 450px;
+}
+
+.email {
+    margin-left: 160px;
+}
+
+#salvarConfig {
+    padding: 7px 20px;
+    border-radius: 50px;
+    background-color: #00C036;
+    border: 0;
+    color: #221E1E;
+    margin: 25px 10px;
+}
+
+#salvarConfig:hover {
+    color: #fff;
+}
+
+
+/* AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIII */
+
+
+.esqueceu{
+    text-decoration: none;
+    color: #00C036;
+}
+
+.esqueceu:hover{
+    color: #fff;
+}
+
+
+/* POPOVER TAGS */
+#mypopover {
+    border: none;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    max-width: 250px;
+    overflow-x: hidden;
+    padding-top: 35px;
+    background-color: #484444;
+}
+
+button.icon1 {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    filter: grayscale();
+    outline: 0;
+}
+
+#mypopover::backdrop {
+    background-color: #0005;
+}
+
+
+#tag1 {
+    color: #fff;
+    width: 100%;
+    margin: 2px;
+    background: linear-gradient(#00000060, #00000054), url(../img/goldens.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+#tag1:hover {
+    background: linear-gradient(#faf9f960, #ffffffe5), url(../img/goldens.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    color: #3E3C3C;
+}
+
+#tag2 {
+    color: #fff;
+    width: 100%;
+    margin: 2px;
+    background: linear-gradient(#00000060, #00000054), url(../img/comidas.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+}
+
+#tag2:hover {
+    background: linear-gradient(#faf9f960, #ffffffe5), url(../img/comidas.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    color: #3E3C3C;
+}
+
+#tag3 {
+    color: #fff;
+    width: 100%;
+    margin: 2px;
+    background: linear-gradient(#00000060, #00000054), url(../img/horror.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+}
+
+#tag3:hover {
+    background: linear-gradient(#faf9f960, #ffffffe5), url(../img/horror.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    color: #3E3C3C;
+}
+
+#tag4 {
+    color: #fff;
+    width: 100%;
+    margin: 2px;
+    background: linear-gradient(#00000060, #00000054), url(../img/anatomia.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+}
+
+#tag4:hover {
+    background: linear-gradient(#faf9f960, #ffffffe5), url(../img/anatomia.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    color: #3E3C3C;
+}
+
+#tag5 {
+    color: #fff;
+    width: 100%;
+    margin: 2px;
+    background: linear-gradient(#00000060, #00000054), url(../img/diluc.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+}
+
+#tag5:hover {
+    background: linear-gradient(#faf9f960, #ffffffe5), url(../img/diluc.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    color: #3E3C3C;
+}
+
+#tag6 {
+    color: #fff;
+    width: 100%;
+    margin: 2px;
+    background: linear-gradient(#00000060, #00000054), url(../img/fanart.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+}
+
+#tag6:hover {
+    background: linear-gradient(#faf9f960, #ffffffe5), url(../img/fanart.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    color: #3E3C3C;
+}
+
+#tag7 {
+    color: #fff;
+    width: 100%;
+    margin: 2px;
+    background: linear-gradient(#00000060, #00000054), url(../img/arquitetura.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+}
+
+#tag7:hover {
+    background: linear-gradient(#faf9f960, #ffffffe5), url(../img/arquitetura.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    color: #3E3C3C;
+}
+
+#tag8 {
+    color: #fff;
+    width: 100%;
+    margin: 2px;
+    background: linear-gradient(#00000060, #00000054), url(../img/veiculos.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+}
+
+#tag8:hover {
+    background: linear-gradient(#faf9f960, #ffffffe5), url(../img/veiculos.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    color: #3E3C3C;
+}
+
+#tag9 {
+    color: #fff;
+    width: 100%;
+    margin: 2px;
+    background: linear-gradient(#00000060, #00000054), url(../img/animes.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+}
+
+#tag9:hover {
+    background: linear-gradient(#faf9f960, #ffffffe5), url(../img/animes.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    color: #3E3C3C;
+}
+
+button.tagPopover {
+    padding: 0.8rem 2rem;
+    border-radius: 0.6rem;
+    border: none;
+    color: #221E1E;
+    cursor: pointer;
+    font-weight: bolder;
+}
+/* POPOVER TAGS */
+
+/* POPOVER REGISTRE-SE */
+#register {
+    border: none;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    max-width: 450px;
+    background-color: #2A2525;
+}
+
+button.icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    filter: grayscale();
+    outline: 0;
+}
+
+#register::backdrop {
+    background-color: #0005;
+}
+
+#register h3 {
+    margin-top: 0;
+    color: #BEBABA;
+}
+
+#register p {
+    color: #BEBABA;
+}
+
+#register button.primary {
+    width: 85%;
+}
+
+#cadastro{
+    border-radius: 20px;
+    color: #fff;
+    background-color: #3E3C3C;
+    margin: 7px;
+    width: 350px;
+}
+
+#cadastro::placeholder{
+    color: #BEBABA;
+}
+
+.popRegister{
+    padding: 7px 27px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+}
+
+.popRegister:hover {
+    background-color: #00C036;
+    color: #221E1E;
+}
+
+/* POPOVER REGISTRE-SE */
+
+/* POPOVER LOGIN */
+#login {
+    border: none;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    max-width: 450px;
+    background-color: #2A2525;
+}
+
+button.icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    filter: grayscale();
+    outline: 0;
+}
+
+#login::backdrop {
+    background-color: #0005;
+}
+
+#login h3 {
+    margin-top: 0;
+    color: #BEBABA;
+}
+
+#login p {
+    color: #BEBABA;
+}
+
+#login button.primary {
+    width: 85%;
+}
+
+#popLogin{
+    border-radius: 20px;
+    color: #fff;
+    background-color: #3E3C3C;
+    margin: 7px;
+    width: 350px;
+}
+
+#popLogin::placeholder{
+    color: #BEBABA;
+}
+
+.popRegister{
+    padding: 7px 27px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+}
+
+.popRegister:hover {
+    background-color: #00C036;
+    color: #221E1E;
+}
+
+/* POPOVER LOGIN */
+
+.curtidas h1{
+    color: #00C036;
+}
+
+#btnUpload{
+    padding: 7px 30px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+}
+
+#btnUpload:hover{
+    background-color: #00C036;
+    color: #221E1E;
+}
+
+.imagemUsuario{
+    margin-right: 30px;
+    width: 45px;
+}
+
+/* AQQQQQQQQQQQQQQUUUUUUUIIIIIII */
+
+.imagemUsuario2{
+    width: 200px;
+}
+
+.nomePerfil {
+    color: #BEBABA;
+}
+
+.seguindo{
+    color: #BEBABA;
+}
+
+.seguidores{
+    color: #BEBABA;
+}
+
+.valorSeguindo{
+    color: #00C036;
+    font-size: 20px;
+    position: relative;
+}
+
+.valor1{
+    position: absolute;
+    left: 103px;
+}
+
+.valorSeguidores{
+    color: #00C036;
+    margin-right: px;
+    font-size: 20px;
+    position: relative;
+}
+
+.valor2{
+    position: absolute;
+    right: 100px;
+}
+
+#imagens{
+    padding: 7px 40px;
+    border-radius: 50px;
+    background-color: #00C036;
+    border: 0;
+    color: #221E1E;
+}
+
+#albuns{
+    padding: 7px 40px;
+    border-radius: 50px;
+    background-color: #00C036;
+    border: 0;
+    color: #221E1E;
+}
+
+#imagens:hover{
+    color: #fff;
+}
+
+#albuns:hover{
+    color: #fff;
+}
+
+
+/* POPOVER ALBUM */
+#album {
+    border: none;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    max-width: 250px;
+    overflow-x: hidden;
+    padding-top: 35px;
+    background-color: #484444;
+}
+
+button.icon1 {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    filter: grayscale();
+    outline: 0;
+}
+
+#album::backdrop {
+    background-color: #0005;
+}
+
+#album h3{
+    color: #BEBABA;
+}
+
+button.tagPopover {
+    padding: 0.8rem 2rem;
+    border-radius: 0.6rem;
+    border: none;
+    color: #221E1E;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+#uploadBtn2{
+    display: inline-block;
+    text-transform: uppercase;
+    color: #00C036;
+    background-color: #221E1E;
+    text-align: center;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1.5px;
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 5px 15px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+#uploadBtn2:hover{
+    background-color: #00C036;
+    color: #221E1E;
+}

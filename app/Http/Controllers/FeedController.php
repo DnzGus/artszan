@@ -6,11 +6,29 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use App\Models\Like;
+use Illuminate\Support\Facades\Auth;
 
 class FeedController extends Controller
 {
-    public function feed() {
-        $posts = Post::all();
+    public function index() {
+        $tags = Tag::all();
+        $posts = Post::where('private', '0')->get();
+        return view('feed.indexfeed', compact('posts','tags'));
+    }
+
+    public function getNews() {
+        $posts = Post::where('private', '0')->latest()->get();
+        return view('feed.indexfeed', compact('posts'));
+    }
+
+    public function getLikeds() {
+        $userId = Auth::id();
+        $likeds = Like::where('user_id', $userId)->get();
+        $posts = [];
+        foreach($likeds as $like){
+            $posts[] = Post::find($like->post_id);
+        }
         return view('feed.indexfeed', compact('posts'));
     }
 
@@ -42,6 +60,6 @@ class FeedController extends Controller
                 $sendPosts[] = $post;
             }
         }
-        return view('feed.searchuserfeed', compact('sendPosts'));
+        return view('feed.searchuserfeed', compact('sendPosts','user'));
     }
 }

@@ -11,9 +11,7 @@ use App\Http\Controllers\FollowerController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FeedController::class, 'index'])->name('feed.index');
 
 Auth::routes();
 
@@ -77,7 +75,11 @@ Route::delete('/album/{id}', [AlbumController::class, 'destroy'])->name('album.d
 
                                 //feed//
 
-Route::get('/feed', [FeedController::class, 'feed'])->name('feed.index');
+Route::get('/feed', [FeedController::class, 'index'])->name('feed.index');
+
+Route::get('/feed/mostnew', [FeedController::class, 'getNews'])->name('feed.news');
+
+Route::get('/feed/liked', [FeedController::class, 'getLikeds'])->name('feed.liked');
 
 Route::get('/feed/tag/{idSearch}',[FeedController::class, 'searchTag'])->name('feed.search.tag');
 
@@ -89,7 +91,9 @@ Route::get('/profile', [ProfileController::class, 'redir'])->name('profile.redir
 
 Route::get('/profiles', [ProfileController::class, 'index'])->name('profile.index');
 
-Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/profile/images/{id}', [ProfileController::class, 'showImages'])->name('profile.showImages');
+
+Route::get('/profile/albums/{id}', [ProfileController::class, 'showAlbums'])->name('profile.showAlbums');
 
 Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
