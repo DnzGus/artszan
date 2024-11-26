@@ -40,5 +40,8 @@ class TagSeeder extends Seeder
         DB::table('tags')->insert([
             'name' => 'animes'
         ]);
+        DB::table('tags')->insert([
+            'name' => 'pixel'
+        ]);
     }
 };
