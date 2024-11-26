@@ -85,7 +85,20 @@
             </a>
         </div>
     </div>
+    <div class="text-center">
 
+        <button popovertarget="mypopover" id="curtir"><i class="bi bi-three-dots"></i></button>
+
+        <dialog id="mypopover" popover="auto">
+            <button popovertarget="mypopover" popovertargetaction="hide" class="icon1">❌</button>
+            <div class="d-flex flex-column justify-content-evenly gap-2">
+            @foreach ($tags as $tag)
+            <a role="button" class="tagPopover fw-semibold" id="curtir" popovertarget="mypopover" href="{{url('/feed/tag/' . $tag->id)}}"
+            popovertargetaction="hide">{{$tag->name}}</a>
+            @endforeach
+            </div>
+        </dialog>
+    </div>
     <!-- FEED -->
     <div class="mx-5 mt-5">
         <div class="row">
