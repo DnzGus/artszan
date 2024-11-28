@@ -35,6 +35,7 @@
         </nav>
     </header>
     @endguest
+
     @auth
     <header>
         <nav class="navbar navbar-expand-lg">
@@ -44,13 +45,13 @@
             <form class="d-flex" role="search" method="GET" action="{{url('/feed/search')}}">
                 @csrf
                 <input class="form-control me-2" id="search" type="search" placeholder="🔍 Pesquisar" name="search"
-                aria-label="Search">
+                aria-label="Search"></input>
             </form>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto gap-3 ">
                     <a href="{{url('/post/create')}}">
-                        <button popovertarget="login" class="btn btn-primary fw-semibold" id="btnUpload"
-                        role="button"><i class="bi bi-upload"></i>
+                        <button class="btn btn-primary fw-semibold" id="btnUpload"
+                        role="button"><i class="bi bi-upload" ></i>
                         </button>
                     </a>
                     <a href="#">
@@ -97,6 +98,7 @@
         </nav>
     </header>
     @endauth
+
     @yield('content')
     <!-- FOOTER -->
 

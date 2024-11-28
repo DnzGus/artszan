@@ -20,11 +20,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        if(!Auth::id()){
-            return redirect()->route('register');
-        }
         $user = User::find(Auth::id());
         $tags = Tag::orderBy('name','ASC')->get();
+        
         return view('post.createpost', compact('tags','user'));
     }
 

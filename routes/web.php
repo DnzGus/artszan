@@ -19,7 +19,6 @@ Route::get('/feed', [FeedController::class, 'index'])->name('feed.index');
 
 Route::get('/feed/search', [FeedController::class, 'search'])->name('feed.search');
 
-Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -54,7 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/post/{id}/comment', [PostController::class, 'comment'])->name('post.comment');
     
     Route::post('/post/{id}/like', [PostController::class, 'like'])->name('post.like');
-
+    
     Route::delete('/post/{id}/unlike', [PostController::class, 'unLike'])->name('post.unlike');
     
     Route::get('/post/album/{id}/{idAlbum}', [PostController::class, 'saveInAlbum'])->name('post.saveInAlbum');
@@ -108,8 +107,9 @@ Route::middleware(['auth'])->group(function () {
     
     //follow//
     Route::get('/follow/{id}',[FollowerController::class, 'follow'])->name('follow');
-
+    
     Route::delete('/unFollow/{id}',[FollowerController::class, 'unFollow'])->name('unfollow');
 });
 
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 
