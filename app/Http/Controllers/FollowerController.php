@@ -17,6 +17,15 @@ class FollowerController extends Controller
         $follow->follows_id = $id;
         $follow->save();
 
-        return redirect()->route('profile.index');
+        return redirect()->back();
+    }
+
+    public function unFollow(string $id){
+
+        $follow = Follow::where('follows_id',$id)->where('user_id', Auth::id());
+
+        $follow->delete();
+
+        return redirect()->back();
     }
 }

@@ -36,32 +36,40 @@
     </div>
     <div class="row mt-4">
         <div class="nomePerfil col d-flex justify-content-center mt-2">
-            <h2>Posts</h2>
+            <h2>Albuns</h2>
         </div>
     </div>
     <div class="row">
         <div class="nomePerfil col d-flex justify-content-center mt-1 mb-4">
-            <h3>{{$totalPosts}}</h3>
+            <h3>{{$totalAlbums}}</h3>
         </div>
     </div>
-    <div class="row">
-        <div class="d-flex justify-content-center">
-            <a class="btn btn-primary fw-semibold m-2" id="imagens" href="{{url('/profile/images/' . $profile->id)}}" role="button">Imagem</a>
-            <a class="btn btn-primary fw-semibold m-2" id="albuns" href="#" role="button">Albuns</a>
-        </div>
-        <div class="d-flex justify-content-end">
-            <a class="btn btn-primary fw-semibold m-2" id="albuns" href="{{ url('/album/create') }}" role="button">Criar Album</a>
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <div>
+                <a class="btn btn-primary fw-semibold m-2" id="imagens" href="{{url('/profile/images/' . $profile->id)}}" role="button">Imagem</a>
+                <a class="btn btn-primary fw-semibold m-2" id="albuns" href="#" role="button">Albuns</a>
+            </div>
+            <div>
+            </div>
+            @if(Auth::id() == $profile->id)
+            <div>
+                <a class="btn btn-primary fw-semibold m-2" id="albuns" href="{{ url('/album/create') }}" role="button">Criar Album</a>
+            </div>
+            @endif
         </div>
     </div>
-    <div class="mx-5 mt-5">
+    <div class="container text-start my-5">
         <div class="row">
             @foreach ($albums as $album)
-            <div class="col-lg-3 my-2 text-center">
-            <a href="{{url('/album/' . $album->id)}}">
-                <img src="{{url('/imgs/album.jpg')}}" alt="album cover" width="270" height="250">
-                <p style="color: #bebaba">{{$album->title}}</p>
-            </a>
-            </div>
+                @if($album->private == 0 or Auth::id() == $album->user_id)
+                    <div class="col">
+                    <a href="{{url('/album/' . $album->id)}}">
+                        <img id="posts" src="{{url('/imgs/album.jpg')}}" alt="album cover" width="270" height="250">
+                        <p style="color: #bebaba">{{$album->title}}</p>
+                    </a>
+                    </div>
+                @endif
             @endforeach
         </div>
     </div>

@@ -16,4 +16,5 @@ class Follow extends Model
     {
         return $this->hasMany(User::class, 'id', 'follows_id');
     }
+    
 }

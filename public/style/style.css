@@ -130,6 +130,18 @@ a {
     color: #221E1E;
 }
 
+#criarAlbum {
+    padding: 1px 15px 3px;
+    border-radius: 50px;
+    background-color: #221E1E;
+    border: 0;
+    color: #00C036;
+}
+
+#criarAlbum:hover {
+    color: #fff;
+}
+
 #curtir:hover {
     color: #fff;
 }

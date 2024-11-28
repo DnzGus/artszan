@@ -10,6 +10,7 @@ use App\Models\Image;
 use App\Models\Comment;
 use App\Models\Album;
 use App\Models\Like;
+use App\Models\Follow;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -90,7 +91,9 @@ class PostController extends Controller
                     return redirect()->route('home');
                 }
             }
-
+            
+            $follows = Follow::where('user_id', $userId)->where('follows_id', $post->user->id)->exists();
+            $liked = Like::where('user_id', $userId)->where('post_id', $post->id)->exists();
             $comments = Comment::where('post_id', $id)->get();
             $totalComments = count(comment::where('post_id', $id)->get());
             $likes = count(Like::where('post_id', $id)->get());
@@ -102,7 +105,7 @@ class PostController extends Controller
             foreach($post->tags_id as $tag){
                 $tags[] = Tag::find($tag);
             }
-            return view('post.showpost', compact('post','tags','albums','comments','likes','user'));
+            return view('post.showpost', compact('post','tags','albums','comments','likes','user','follows','liked'));
         }
         return redirect()->route('home');
     }
@@ -176,13 +179,22 @@ class PostController extends Controller
     }
 
     public function like(request $request){
+
         $like = new Like();
 
         $like->user_id = Auth::id();
         $like->post_id = $request->post_id;
         $like->save();
 
-        return redirect()->route('post.show', ['id' => $request->post_id]);
+        return redirect()->back();
+    }
+
+    public function unLike(string $id){
+
+        $like = Like::where('post_id',$id)->where('user_id', Auth::id());
+        $like->delete();
+
+        return redirect()->back();
     }
 
     public function saveInAlbum(string $id, string $idAlbum){

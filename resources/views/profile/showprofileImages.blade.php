@@ -44,27 +44,30 @@
             <h3>{{$totalPosts}}</h3>
         </div>
     </div>
-    <div class="row">
-        <div class="d-flex justify-content-center">
-            <a class="btn btn-primary fw-semibold m-2" id="imagens" href="#" role="button">Imagem</a>
-            <a class="btn btn-primary fw-semibold m-2" id="albuns" href="{{url('/profile/albums/' . $profile->id)}}" role="button">Albuns</a>
+    <div class="container">
+        <div class="d-flex justify-content-start">
+            <div>
+                <a class="btn btn-primary fw-semibold m-2" id="imagens" href="#" role="button">Imagem</a>
+                <a class="btn btn-primary fw-semibold m-2" id="albuns" href="{{url('/profile/albums/' . $profile->id)}}" role="button">Albuns</a>
+            </div>
         </div>
     </div>
-    <div class="mx-5 mt-5">
+    <div class="container text-start my-5">
         <div class="row">
             @foreach ($posts as $post)
-            <div class="col-lg-3 my-2">
-            <a href="{{url('/post/' . $post->id)}}">
-                @foreach($post->images as $image)
-                    <img  id="posts" src="data:image/png;base64,{{ $image->image }}" alt="{{$image->title}}" width="270" height="250">
-                    @break
-                @endforeach
-            </a>
-            </div>
+                @if($post->private == 0)
+                <div class="col my-2">
+                    <a href="{{url('/post/' . $post->id)}}">
+                        @foreach($post->images as $image)
+                            <img  id="posts" src="data:image/png;base64,{{ $image->image }}" alt="{{$image->title}}" width="270" height="250">
+                            @break
+                        @endforeach
+                    </a>
+                </div>
+                @endif
             @endforeach
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

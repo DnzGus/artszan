@@ -8,18 +8,20 @@
             <div class="col-auto" data-aos="fade-down" data-aos-delay="50">
                 <form action="{{url('/album/' . $album->id)}}" method="POST">
                     <div class="d-flex flex-column gap-2">
+                        <div class="row">
                             @method('PUT')
                             @csrf
                             @foreach($post->images as $postimage)
-                            <div class="d-flex">
+                            <div class="d-flex col">
                                 <input type="checkbox" name="images[]" value="{{ $postimage->id }}">
-                                <img src="data:image/png;base64,{{ $postimage->image }}" alt="{{$postimage->id}}" id="image" class="" width="600" height="500">
+                                <img src="data:image/png;base64,{{ $postimage->image }}" alt="{{$postimage->id}}" id="image" class="" width="200" height="200">
                             </input>
                         </div>
-                            @endforeach
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-primary fw-semibold" id="curtir" role="button" type="submit">Editar</button>
-                            </div>
+                        @endforeach
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-primary fw-semibold my-5" id="curtir" role="button" type="submit">Salvar</button>
+                        </div>
+                    </div>
                         </div>
                         </form>
             </div>
@@ -31,16 +33,10 @@
                             <img class="fotoPerfil rounded-circle" src="data:image/png;base64,{{$post->user->profilePhoto}} "alt="Imagem de Perfil de Usuário">
                             @else
                             <img class="fotoPerfil rounded-circle" src="{{url('/imgs/userImage.png')}}"alt="Imagem de Perfil de Usuário">
-                            
-                            @endif"
+                            @endif
                             <div class="m-4">
                                 <h5 class="nomeUsuario">{{$post->user->name}}</h5>
                             </div>
-                        </div>
-                        <div class="btn-seguir">
-                            @if($post->user_id != $user->id)
-                            <a class="btn btn-primary fw-semibold" id="seguir" href="{{URL('/follow/' .$post->user->id)}}" role="button">seguir</a>
-                            @endif
                         </div>
                         <div class="d-flex justify-content-center">
                             <div class="cardTitulo">
@@ -54,8 +50,6 @@
                                         <input href="#" id="curtir" class="btn btn-primary fw-semibold" role="button" value="curtir" type="submit"></input>
                                     @endif
                                     </form>
-                                    <a href="#" id="curtir" class="btn btn-primary fw-semibold mx-1">salvar</a>
-                                    <a href="#" id="curtir" class="btn btn-primary fw-semibold">compartilhar</a>
                                 </div>
                             </div>
                         </div>

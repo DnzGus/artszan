@@ -26,9 +26,8 @@ class ProfileController extends Controller
     }
     public function showImages(string $id){
 
-        $id = Auth::id();
         $profile = User::find($id);
-        $posts = Post::where('user_id', $id)->get();
+        $posts = Post::where('user_id', $profile->id)->get();
         $totalPosts = count($posts);
         $totalFollows = count(Follow::where('user_id', $id)->get());
         $totalFollowers = count(Follow::where('follows_id', $id)->get());
@@ -37,14 +36,13 @@ class ProfileController extends Controller
 
     public function showAlbums(string $id){
 
-        $id = Auth::id();
         $profile = User::find($id);
-        $posts = Post::where('user_id', $id)->get();
-        $albums = Album::where('user_id', $id)->get();
-        $totalPosts = count($posts);
+        $posts = Post::where('user_id', $profile->id)->get();
+        $albums = Album::where('user_id', $profile->id)->get();
+        $totalAlbums = count(Album::where('user_id', $profile->id)->where('private', '=', 0)->get());
         $totalFollows = count(Follow::where('user_id', $id)->get());
         $totalFollowers = count(Follow::where('follows_id', $id)->get());
-        return view('profile.showprofileAlbums', compact('profile','totalFollows','totalFollowers','totalPosts','albums'));
+        return view('profile.showprofileAlbums', compact('profile','totalFollows','totalFollowers','totalAlbums','albums'));
     }
 
     public function edit(string $id){

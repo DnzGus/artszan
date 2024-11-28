@@ -21,8 +21,9 @@
             <a class="navbar-brand fw-bolder text-white" id="logo" href="{{url('/feed')}}">
                 <img class="logo" src="{{url('/imgs/image.png')}}" alt="Logo Artszan">
             </a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" id="search" type="search" placeholder="🔍 Pesquisar"
+            <form class="d-flex" role="search" method="GET" action="{{url('/feed/search')}}">
+                @csrf
+                <input class="form-control me-2" id="search" type="search" placeholder="🔍 Pesquisar" name="search"
                 aria-label="Search">
             </form>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,8 +41,9 @@
             <a class="navbar-brand fw-bolder text-white" id="logo" href="{{url('/feed')}}">
                 <img class="logo" src="{{url('/imgs/image.png')}}" alt="Logo Artszan">
             </a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" id="search" type="search" placeholder="🔍 Pesquisar"
+            <form class="d-flex" role="search" method="GET" action="{{url('/feed/search')}}">
+                @csrf
+                <input class="form-control me-2" id="search" type="search" placeholder="🔍 Pesquisar" name="search"
                 aria-label="Search">
             </form>
             <div class="collapse navbar-collapse" id="navbarNav">
