@@ -48,9 +48,10 @@ class ProfileController extends Controller
     public function edit(string $id){
 
         $user_id = Auth::id();
+        $user = User::find($user_id);
 
-        if($id != $user_id){
-            return redirect()->route('home');
+        if($id != $user_id and $user->profile != 'admin'){
+            return redirect()->route('feed.index');
         }
 
         $profile = User::find($id);
@@ -61,7 +62,9 @@ class ProfileController extends Controller
 
         $user_id = Auth::id();
         $profile = User::find($user_id);
-
+        if($user_id != $profile->id){
+            return redirect()->route('feed.index');
+        }
         if($request->image){
             $validated = $request->validate([
             'imagem' => 'mimes:jpg,png',
@@ -91,7 +94,7 @@ class ProfileController extends Controller
 
         $profile->save();
 
-        return redirect()->route('profile.show', ['id' => $user_id]);
+        return redirect()->route('profile.showImages', ['id' => $user_id]);
     }
 }
 
