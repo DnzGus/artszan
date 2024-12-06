@@ -12,6 +12,7 @@ use App\Models\Album;
 use App\Models\Like;
 use App\Models\Follow;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Laravel\Facades\Image as Intervention;
 
 class PostController extends Controller
 {
@@ -20,7 +21,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $user = User::find(Auth::id());
+        $user_id = Auth::id();
+        $user = User::find($user_id);
         $tags = Tag::orderBy('name','ASC')->get();
         
         return view('post.createpost', compact('tags','user'));
@@ -40,6 +42,7 @@ class PostController extends Controller
 
 
         $post = new Post();
+
         //transformando as tags em array e json
         $tags = $request->tags;
         $jsonTags = [];
@@ -48,9 +51,7 @@ class PostController extends Controller
         }
         $post->tags_id = $jsonTags;
         
-        
-        
-        
+        //instanciando o post
         $post->user_id = Auth::id();
         $post->title = $request->title;
         $post->description = $request->description;
@@ -61,7 +62,13 @@ class PostController extends Controller
             $post->private = 1;
         }
         $post->save();
-        
+        $imageFile = file_get_contents($request->images[0]);
+        $image = Intervention::read($imageFile);
+        $imageName = $post->id;
+        $destinationPathThumbnail = public_path('thumbs/');
+        $image->resize(250,250);
+        $image->save($destinationPathThumbnail.$imageName);
+        //adcicionando as imagens ao post
         $totalImages = count($request->images);
         for($i = 0; $i < $totalImages; $i++){
             $image = new Image();
@@ -72,7 +79,7 @@ class PostController extends Controller
             $image->save();
         }
 
-        return redirect()->route('post.create');
+        return redirect()->route('profile.showImages', ['id' => Auth::id()])->with('success', 'Post criado com sucesso!');
     }
 
     /**
@@ -80,23 +87,24 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $userId = Auth::id();
-        $user = User::find($userId);
+        $user_id = Auth::id();
+        $user = User::find($user_id);
         $post = Post::find($id);
+
         if($post){
             if($post->private != 0){
-                if($userId != $post->user_id and $user->profile != 'admin'){
+                if($user_id != $post->user_id and $user->profile != 'admin'){
                     return redirect()->route('home');
                 }
             }
-            
-            $follows = Follow::where('user_id', $userId)->where('follows_id', $post->user->id)->exists();
-            $liked = Like::where('user_id', $userId)->where('post_id', $post->id)->exists();
+
+            $follows = Follow::where('user_id', $user_id)->where('follows_id', $post->user->id)->exists();
+            $liked = Like::where('user_id', $user_id)->where('post_id', $post->id)->exists();
             $comments = Comment::where('post_id', $id)->get();
             $totalComments = count(comment::where('post_id', $id)->get());
             $likes = count(Like::where('post_id', $id)->get());
             
-            $albums = Album::where('user_id', $userId)->get();
+            $albums = Album::where('user_id', $user_id)->get();
             
         
             $tags = [];
@@ -113,15 +121,17 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $userId = Auth::id();
-        $user = User::find($userId);
+        $user_id = Auth::id();
+        $user = User::find($user_id);
         $post = Post::find($id);
+
         if($post){
-            if($userId != $post->user_id and $user->profile != 'admin'){
+            if($user_id != $post->user_id and $user->profile != 'admin'){
                 return redirect()->route('home');
             }
             $tags = Tag::orderBy('name', 'ASC')->get();
         }
+        
         return view('post.editpost', compact('tags', 'post','user'));
     }
 
@@ -164,10 +174,10 @@ class PostController extends Controller
 
     public function comment(request $request){
 
-        $user = Auth::id();
+        $user_id = Auth::id();
         $comment = new Comment();
 
-        $comment->user_id = $user;
+        $comment->user_id = $user_id ;
         $comment->post_id = $request->post_id;
         $comment->comment = $request->comment;
 
@@ -197,8 +207,8 @@ class PostController extends Controller
 
     public function saveInAlbum(string $id, string $idAlbum){
 
-        $userId = Auth::id();
-        $user = User::find($userId);
+        $user_id = Auth::id();
+        $user = User::find($user_id);
         $album = Album::find($idAlbum);
 
         $post = Post::find($id);

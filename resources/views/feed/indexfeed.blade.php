@@ -25,7 +25,7 @@
 
     <div class="row ms-5">
         <div class="d-flex align-items-center col-lg-2">
-            <a href="#">
+            <a href="{{url('/feed/tag/6')}}">
                 <img class="tagsIndex rounded-circle" src="{{url('/imgs/ficcao.jpg')}}" alt="Imagem das Tags">
             </a>
             <a href="{{url('/feed/tag/6')}}">
@@ -35,7 +35,7 @@
             </a>
         </div>
         <div class="d-flex align-items-center col-lg-2">
-            <a href="#">
+            <a href="{{url('/feed/tag/9')}}">
                 <img class="tagsIndex rounded-circle" src="{{url('/imgs/personagens.jpg')}}" alt="Imagem das Tags">
             </a>
             <a href="{{url('/feed/tag/9')}}">
@@ -45,7 +45,7 @@
             </a>
         </div>
         <div class="d-flex align-items-center col-lg-2">
-            <a href="view.html">
+            <a href="{{url('/feed/tag/5')}}">
                 <img class="tagsIndex rounded-circle" src="{{url('/imgs/mecha.jpg')}}" alt="Imagem das Tags">
             </a>
             <a href="{{url('/feed/tag/5')}}">
@@ -55,7 +55,7 @@
             </a>
         </div>
         <div class="d-flex align-items-center col-lg-2">
-            <a href="#">
+            <a href="{{url('/feed/tag/1')}}">
                 <img class="tagsIndex rounded-circle" src="{{url('/imgs/fantasia.jpg')}}" alt="Imagem das Tags">
             </a>
             <a href="{{url('/feed/tag/1')}}">
@@ -65,7 +65,7 @@
             </a>
         </div>
         <div class="d-flex align-items-center col-lg-2">
-            <a href="#">
+            <a href="{{url('/feed/tag/3')}}">
                 <img class="tagsIndex rounded-circle" src="{{url('/imgs/horror.jpg')}}" alt="Imagem das Tags">
             </a>
             <a href="{{url('/feed/tag/3')}}">
@@ -75,7 +75,7 @@
             </a>
         </div>
         <div class="d-flex align-items-center col-lg-2">
-            <a href="#">
+            <a href="{{url('/feed/tag/10')}}">
                 <img class="tagsIndex rounded-circle" src="{{url('/imgs/pixel.jpg')}}" alt="Imagem das Tags">
             </a>
             <a href="{{url('/feed/tag/10')}}">
@@ -105,12 +105,9 @@
         <div class="row">
             @foreach ($posts as $post)
             <div class="col-lg-3 my-2">
-            <a href="{{url('/post/' . $post->id)}}">
-                @foreach($post->images as $image)
-                    <img  id="posts" src="data:image/png;base64,{{ $image->image }}" alt="{{$image->title}}" width="270" height="250">
-                    @break
-                @endforeach
-            </a>
+                <a href="{{url('/post/' . $post->id)}}">
+                    <img  id="posts" src="{{ url('thumbs/' . $post->id) }}">
+                </a>
             </div>
             @endforeach
         </div>

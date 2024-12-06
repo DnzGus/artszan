@@ -2,6 +2,11 @@
 
 @section('content')
 
+@if(session('success'))
+                    <div class="alert alert-success m-2">
+                        {{session('success')}}
+                    </div>
+                @endif
     <div class="row">
         <div class="col d-flex justify-content-center mt-5">
             <a href="#">
@@ -58,10 +63,7 @@
                 @if($post->private == 0)
                 <div class="col my-2">
                     <a href="{{url('/post/' . $post->id)}}">
-                        @foreach($post->images as $image)
-                            <img  id="posts" src="data:image/png;base64,{{ $image->image }}" alt="{{$image->title}}" width="270" height="250">
-                            @break
-                        @endforeach
+                        <img id="posts" src="{{ url('thumbs/' . $post->id) }}">
                     </a>
                 </div>
                 @endif
