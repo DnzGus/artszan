@@ -44,8 +44,8 @@
         <div class="nomePerfil col d-flex justify-content-center mt-1 mb-4">
             <h3>{{$totalPosts}}</h3>
         </div>
-    <div class="container">
     </div>
+    <div class="container">
         <div class="d-flex justify-content-start">
             <div>
                 <a class="btn btn-primary fw-semibold m-2" id="imagens" href="#" role="button">Imagem</a>

@@ -7,7 +7,7 @@ use App\Models\Post;
 use App\Models\Album;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Intervention\Image\Laravel\Facades\Image as Intervention;
 
 class AlbumController extends Controller
 {

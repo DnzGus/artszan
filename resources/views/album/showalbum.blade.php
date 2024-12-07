@@ -5,20 +5,51 @@
         <div class="row justify-content-evenly align-items-start text-white"
             style="filter: drop-shadow(10px 7px 10px #000000); margin: 25px;">
             <div class="col-auto" data-aos="fade-down" data-aos-delay="50">
-                <div class="d-flex flex-column gap-2">
+                {{-- <div class="d-flex flex-column gap-2">
                     @if($album->images_id)
-                        @foreach($album->images_id as $imageId)
-                            @foreach($posts as $post)
-                                @foreach($post->images as $image)
-                                    @if($imageId == $image->id)
-                                        <img src="data:image/png;base64,{{ $image->image }}" alt="" / height="200">
-                                    @endif
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner">
+                            @for($i = 0; $i < count($album->images_id); $i++)
+                            @if($i < 1)
+                                @foreach($album->images_id as $imageId)
+                                    @foreach($posts as $post)
+                                        @foreach($post->images as $image)
+                                            @if($imageId == $image->id)
+                                                <div class="carousel-item active">
+                                                    <img src="data:image/png;base64,{{ $post->images[$i]->image }}" alt="{{$post->images[$i]->id}}" id="image" class="d-block" style="width: 50vw; height: 100vh;">
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
                                 @endforeach
-                            @endforeach
-                        @endforeach
+                            @else
+                                @foreach($album->images_id as $imageId)
+                                    @foreach($posts as $post)
+                                        @foreach($post->images as $image)
+                                            @if($imageId == $image->id)
+                                                <div class="carousel-item">
+                                                    <img src="data:image/png;base64,{{ $post->images[$i]->image }}" alt="{{$post->images[$i]->id}}" id="image" class="d-block" style="width: 50vw; height: 100vh;">
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                @endforeach
+                            @endif
+                                @endfor
+                                </div>
+                                @if(count($post->images) > 1)
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                                @endif
+                            </div>
                         @endif
-                </div>
-            </div>
+            </div> --}}
             <div class="col-lg-3 mt-3">
                 <div class="card" id="aside">
                     <div class="mt-4 d-flex flex-column">

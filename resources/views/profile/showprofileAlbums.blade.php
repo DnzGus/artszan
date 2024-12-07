@@ -59,13 +59,13 @@
             @endif
         </div>
     </div>
-    <div class="container text-start my-5">
-        <div class="row">
+    <div class="m-5">
+        <div class="row row-cols-lg-6">
             @foreach ($albums as $album)
                 @if($album->private == 0 or Auth::id() == $album->user_id)
                     <div class="col">
                     <a href="{{url('/album/' . $album->id)}}">
-                        <img id="posts" src="{{url('/imgs/album.jpg')}}" alt="album cover" width="270" height="250">
+                        <img id="posts" src="{{url('/imgs/album.png')}}" alt="album cover" width="250" height="250">
                         <p style="color: #bebaba">{{$album->title}}</p>
                     </a>
                     </div>
