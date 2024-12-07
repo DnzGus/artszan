@@ -10,6 +10,17 @@
 
     <!-- MAIN -->
 
+    @if(session('success'))
+        <div class="alert alert-success m-2">
+            {{session('success')}}
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger m-2">
+            {{session('error')}}
+        </div>
+    @endif
+
     <section id="banner" class="section-padding pb-5 pt-5 mb-5"
         style="background: linear-gradient(#00000060,#00000054), url(img/thumb-1920-1343746.png); background-position: 50% 30%; background-size: cover; height: 250px;">
         <div class="container text-center" style="filter: drop-shadow(10px 7px 10px #000000);">
@@ -85,8 +96,7 @@
             </a>
         </div>
     </div>
-    <div class="text-center">
-
+    <div class="text-center my-5">
         <button popovertarget="mypopover" id="curtir"><i class="bi bi-three-dots"></i></button>
         
         <dialog id="mypopover" popover="auto">
@@ -98,13 +108,13 @@
             @endforeach
             </div>
         </dialog>
-</div>
+    </div>
 
     <!-- FEED -->
-    <div class="mx-5 mt-5">
-        <div class="row">
+    <div class="mx-5">
+        <div class="row row-cols-lg-6">
             @foreach ($posts as $post)
-            <div class="col-lg-3 my-2">
+            <div class="col">
                 <a href="{{url('/post/' . $post->id)}}">
                     <img  id="posts" src="{{ url('thumbs/' . $post->id) }}">
                 </a>

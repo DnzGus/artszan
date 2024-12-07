@@ -89,15 +89,12 @@
     <!-- FEED -->
     <div class="mx-5 mt-5">
       <h3 class="text-center" style="color: #bebaba">Posts de {{$user->name}}</h3>
-        <div class="row">
+        <div class="row row-cols-lg-6">
             @foreach ($sendPosts as $post)
-            <div class="col-lg-3 my-2">
-            <a href="{{url('/post/' . $post->id)}}">
-                @foreach($post->images as $image)
-                    <img  id="posts" src="data:image/png;base64,{{ $image->image }}" alt="{{$image->title}}" width="270" height="250">
-                    @break
-                @endforeach
-            </a>
+            <div class="col">
+                <a href="{{url('/post/' . $post->id)}}">
+                    <img  id="posts" src="{{ url('thumbs/' . $post->id) }}">
+                </a>
             </div>
             @endforeach
         </div>

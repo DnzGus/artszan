@@ -13,26 +13,26 @@ class AlbumController extends Controller
 {
     public function index(){
 
-        $user = Auth::id();
-        $albums = Album::where('user_id', $user)->get();
+        $user_id = Auth::id();
+        $albums = Album::where('user_id', $user_id)->get();
 
         return view('album.indexalbum', compact('albums'));
     }
     public function create(){
 
-        $user = Auth::id();
-        $posts = Post::where('user_id', $user)->get();
+        $user_id = Auth::id();
+        $posts = Post::where('user_id', $user_id)->get();
 
         return view('album.createalbum', compact('posts'));
     }
 
     public function store(request $request){
 
-        $user = Auth::id();
+        $user_id = Auth::id();
 
         $album = new Album;
         $album->title = $request->title;
-        $album->user_id = $user;
+        $album->user_id = $user_id;
         if($request->images){
             $album->images_id = $request->images;
         }
@@ -40,13 +40,13 @@ class AlbumController extends Controller
 
         $album->save();
 
-        return redirect()->route('profile.showAlbums', ['id' => $user]);
+        return redirect()->route('profile.showAlbums', ['id' => $user_id]);
     }
 
     public function edit(string $id){
 
-        $userId = Auth::id();
-        $user = User::find($userId);
+        $user_id = Auth::id();
+        $user = User::find($user_id);
         $album = Album::find($id);
         if($userId != $album->user_id and $user->profile != 'admin'){
             return redirect()->route('home');
@@ -59,7 +59,11 @@ class AlbumController extends Controller
     public function update(string $id, request $request){
 
         $album = Album::find($id);
-        $userId = Auth::id();
+        $user_id = Auth::id();
+        if($user_id != $album->user_id){
+            return  redirect()->route('feed.index');
+        }
+
         $images = $album->images_id;
 
         //edicao do album
@@ -104,17 +108,16 @@ class AlbumController extends Controller
 
     public function show(string $id){
 
-        $userId = Auth::id();
-        $user = User::find($userId);
+        $user_id = Auth::id();
+        $user = User::find($user_id);
         $album = Album::find($id);
         if($album){
             if($album->private != 0){
-                if($userId != $album->user_id and $user->profile != 'admin'){
+                if($user_id != $album->user_id and $user->profile != 'admin'){
                     return redirect()->route('home');
                 }
             }
             $posts = Post::all();
-
             return view('album.showalbum', compact('album','posts','user'));
         }
         return redirect()->route('feed.index');

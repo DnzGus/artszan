@@ -48,17 +48,17 @@
                             </div>
                         </div>
                         @if(Auth::id() != $post->user_id)
-                            @if(!$follows)
-                                <div class="btn-seguir">
-                                    <a class="btn btn-primary fw-semibold" id="seguir" href="{{URL('/follow/' .$post->user->id)}}" role="button">seguir</a>
-                                </div>
-                            @else
-                            <form class="my-auto mx-3" method="POST" action='{{ url("/unFollow/" . $post->user->id)}}'>
+                        @if(!$follows)
+                        <div class="btn-seguir">
+                            <a class="btn btn-primary fw-semibold" id="seguir" href="{{URL('/follow/' .$post->user->id)}}" role="button">seguir</a>
+                        </div>
+                        @else
+                        <form class="my-auto mx-3" method="POST" action='{{ url("/unFollow/" . $post->user->id)}}'>
                             @method('DELETE')
                             @csrf
-                                <input id="criarAlbum" role="button" value="Parar de seguir" type="submit"></input>
-                            </form>
-                            @endif
+                            <input id="criarAlbum" role="button" value="Parar de seguir" type="submit"></input>
+                        </form>
+                        @endif
                         @endif
                         <div class="d-flex justify-content-center">
                             <div class="cardTitulo">
@@ -95,6 +95,13 @@
                                             popovertargetaction="hide" href="{{URL('/album/create')}}">Criar Album</a>
                                         </div>
                                     </dialog>
+                                    @if($post->user_id == Auth::id())
+                                    <form class="my-auto mx-3" method="POST" action='{{ url("/post/" . $post->id)}}'>
+                                        @method('DELETE')
+                                        @csrf
+                                    <input class="btn btn-danger" role="button" value="Excluir" type="submit" ></input>
+                                    </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

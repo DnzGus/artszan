@@ -62,12 +62,15 @@ class PostController extends Controller
             $post->private = 1;
         }
         $post->save();
+
+        //gerando a thumbnail do post
         $imageFile = file_get_contents($request->images[0]);
         $image = Intervention::read($imageFile);
         $imageName = $post->id;
         $destinationPathThumbnail = public_path('thumbs/');
         $image->resize(250,250);
         $image->save($destinationPathThumbnail.$imageName);
+
         //adcicionando as imagens ao post
         $totalImages = count($request->images);
         for($i = 0; $i < $totalImages; $i++){
@@ -224,7 +227,12 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         $post = Post::find($id);
-        $post->delete();
-        return redirect()->route('home');
+        $user_id = Auth::id();
+        if($user_id != $post->user_id){
+            return redirect()->route('feed.index')->with('error', 'Você não tem permissão para alterar este post!');
+        }else{
+            $post->delete();
+            return redirect()->route('feed.index')->with('success', 'Post excluido com sucesso!');;
+        }
     }
 }

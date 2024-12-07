@@ -20,7 +20,7 @@ class FeedController extends Controller
     public function search(request $request) {
         $tags = Tag::all();
         $posts = Post::where('title', 'like', "%$request->search%")->orWhere('description', 'like', "%$request->search%")->get();
-        return view('feed.indexfeed', compact('posts','tags'));
+        return view('feed.indexfeed', compact('posts','tags','users'));
     }
 
     public function getNews() {

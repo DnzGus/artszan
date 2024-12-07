@@ -3,18 +3,18 @@
 @section('content')
 
 @if(session('success'))
-                    <div class="alert alert-success m-2">
-                        {{session('success')}}
-                    </div>
-                @endif
+    <div class="alert alert-success m-2">
+        {{session('success')}}
+    </div>
+@endif
     <div class="row">
         <div class="col d-flex justify-content-center mt-5">
             <a href="#">
-             @if($profile->profilePhoto != null)
-             <img src="data:image/png;base64,{{ $profile->profilePhoto }}" alt="foto do usuário"  class="imagemUsuario2 rounded-circle"><br>
-             @else
-             <img src="{{URL('/imgs/userImage.png')}}" alt="foto do usuário"  class="imagemUsuario2 rounded-circle"><br>
-             @endif
+                @if($profile->profilePhoto != null)
+                    <img src="data:image/png;base64,{{ $profile->profilePhoto }}" alt="foto do usuário"  class="imagemUsuario2 rounded-circle"><br>
+                @else
+                    <img src="{{URL('/imgs/userImage.png')}}" alt="foto do usuário"  class="imagemUsuario2 rounded-circle"><br>
+                @endif
             </a>
         </div>
     </div>
@@ -23,15 +23,13 @@
             <h2>{{$profile->name}}</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="seguindo col-6 d-flex justify-content-end fw-semibold">
+    <div class="row row-cols-2">
+        <div class="seguindo col d-flex justify-content-end fw-semibold">
             <p>seguindo</p>
         </div>
-        <div class="seguidores col-6 d-flex justify-content-start fw-semibold">
+        <div class="seguidores col d-flex justify-content-start fw-semibold">
             <p>seguidores</p>
         </div>
-    </div>
-    <div class="row">
         <div class="valorSeguindo offset-5 col-1 fw-semibold">
             <p class="valor1">{{$totalFollows}}</p>
         </div>
@@ -39,17 +37,15 @@
             <p class="valor2">{{$totalFollowers}}</pcl>
         </div>
     </div>
-    <div class="row mt-4">
+    <div class="row row-cols-1 mt-4">
         <div class="nomePerfil col d-flex justify-content-center mt-2">
             <h2>Posts</h2>
         </div>
-    </div>
-    <div class="row">
         <div class="nomePerfil col d-flex justify-content-center mt-1 mb-4">
             <h3>{{$totalPosts}}</h3>
         </div>
-    </div>
     <div class="container">
+    </div>
         <div class="d-flex justify-content-start">
             <div>
                 <a class="btn btn-primary fw-semibold m-2" id="imagens" href="#" role="button">Imagem</a>
@@ -57,16 +53,14 @@
             </div>
         </div>
     </div>
-    <div class="container text-start my-5">
-        <div class="row">
+    <div class="m-5">
+        <div class="row row-cols-lg-6">
             @foreach ($posts as $post)
-                @if($post->private == 0)
-                <div class="col my-2">
-                    <a href="{{url('/post/' . $post->id)}}">
-                        <img id="posts" src="{{ url('thumbs/' . $post->id) }}">
-                    </a>
-                </div>
-                @endif
+            <div class="col">
+                <a href="{{url('/post/' . $post->id)}}">
+                    <img  id="posts" src="{{ url('thumbs/' . $post->id) }}">
+                </a>
+            </div>
             @endforeach
         </div>
     </div>
