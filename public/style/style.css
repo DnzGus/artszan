@@ -102,7 +102,6 @@ a {
 
 .cardTitulo {
     background-color: #221E1E;
-    margin: 5px 10px 5px 10px;
     padding: 5%;
     border-radius: 10px;
     color: #BEBABA;
@@ -116,7 +115,6 @@ a {
 
 .tags {
     background-color: #221E1E;
-    margin: 5px 10px 5px 10px;
     padding: 2%;
     border-radius: 10px;
     color: #BEBABA;

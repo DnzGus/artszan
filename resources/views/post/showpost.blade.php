@@ -35,56 +35,56 @@
                 </div>
             </div>
             <div class="col-lg-3 mt-3">
-                <div class="card" id="aside">
-                    <div class="mt-4 d-flex flex-column">
-                        <div class="d-flex justify-content-center flex-row mb-2">
+                <div class="card p-3" id="aside">
+                    <div class="my-auto d-flex flex-column gap-2">
+                        <div class="d-flex justify-content-center align-items-center flex-row">
                             @if($post->user->profilePhoto != null)
                             <img class="fotoPerfil rounded-circle" src="data:image/png;base64,{{$post->user->profilePhoto}} "alt="Imagem de Perfil de Usuário">
                             @else
                             <img class="fotoPerfil rounded-circle" src="{{url('/imgs/userImage.png')}}"alt="Imagem de Perfil de Usuário">
                             @endif
-                            <div class="m-4">
+                            <div class="m-2 d-flex flex-column justify-content-center align-items-center">
                                 <h5 class="nomeUsuario"><a style="color: #BEBABA" href="{{url('/profile/images/' . $post->user_id)}}">{{$post->user->name}}</a></h5>
+                                @if(Auth::id() != $post->user_id)
+                                @if(!$follows)
+                                <div class="btn-seguir">
+                                    <a class="btn btn-primary fw-semibold" id="seguir" href="{{URL('/follow/' .$post->user->id)}}" role="button">seguir</a>
+                                </div>
+                                @else
+                                <form class="my-auto mx-3" method="POST" action='{{ url("/unFollow/" . $post->user->id)}}'>
+                                    @method('DELETE')
+                                    @csrf
+                                    <input id="criarAlbum" role="button" value="Parar de seguir" type="submit"></input>
+                                </form>
+                                @endif
+                                @endif
                             </div>
                         </div>
-                        @if(Auth::id() != $post->user_id)
-                        @if(!$follows)
-                        <div class="btn-seguir">
-                            <a class="btn btn-primary fw-semibold" id="seguir" href="{{URL('/follow/' .$post->user->id)}}" role="button">seguir</a>
-                        </div>
-                        @else
-                        <form class="my-auto mx-3" method="POST" action='{{ url("/unFollow/" . $post->user->id)}}'>
-                            @method('DELETE')
-                            @csrf
-                            <input id="criarAlbum" role="button" value="Parar de seguir" type="submit"></input>
-                        </form>
-                        @endif
-                        @endif
                         <div class="d-flex justify-content-center">
                             <div class="cardTitulo">
                                 <h5 class="card-title d-flex justify-content-center">{{$post->title}}</h5>
                                 <p class="d-flex justify-content-center">{{$post->description}}</p>
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex align-items-center justify-content-around gap-2">
                                     @if(!$liked)
-                                    <form class="my-auto mx-3" method="POST" action='{{ url("/post/" . $post->id) . '/like'}}'>
+                                    <form class="" method="POST" action='{{ url("/post/" . $post->id) . '/like'}}'>
                                         @csrf
                                         <input type="hidden" name="post_id" value="{{$post->id}}" class="form-control">
                                         <input href="#" id="curtir" class="btn btn-primary fw-semibold" role="button" value="curtir" type="submit"></input>
                                     </form>
                                     @else
-                                    <form class="my-auto mx-3" method="POST" action="{{ url('/post/' . $post->id . '/unlike')}}">
+                                    <form class="" method="POST" action="{{ url('/post/' . $post->id . '/unlike')}}">
                                         @method('DELETE')
                                         @csrf
                                         <input type="hidden" name="post_id" value="{{$post->id}}" class="form-control">
                                         <input href="#" id="curtir" class="btn btn-primary fw-semibold" role="button" value="Descurtir" type="submit"></input>
                                     </form>
                                     @endif
-                                    <button popovertarget="album" id="curtir" class="btn btn-primary fw-semibold mx-1"><i class="bi bi-folder"></i> salvar</button>
+                                    <button popovertarget="album" id="curtir" class="btn btn-primary fw-semibold d-flex"><i class="bi bi-folder"></i> salvar</button>
                                     
                                     <dialog id="album" popover="auto">
                                         <button popovertarget="album" popovertargetaction="hide" class="icon1">❌</button>
-                                        <h3 class="d-flex justify-content-center mt-3 mb-4">
-                                            Album
+                                        <h3 class="d-flex justify-content-center my-3">
+                                            Albuns
                                         </h3>
                                         <div class="d-flex flex-column justify-content-evenly gap-2">
                                             @foreach($albums as $album)
@@ -96,21 +96,22 @@
                                         </div>
                                     </dialog>
                                     @if($post->user_id == Auth::id())
-                                    <form class="my-auto mx-3" method="POST" action='{{ url("/post/" . $post->id)}}'>
+                                    <a href="{{url('/post/' . $post->id . '/edit')}}" id="curtir" class="btn btn-primary fw-semibold" role="button">Editar</a>  
+                                    <form class="" method="POST" action='{{ url("/post/" . $post->id)}}'>
                                         @method('DELETE')
                                         @csrf
-                                    <input class="btn btn-danger" role="button" value="Excluir" type="submit" ></input>
+                                        <input class="btn btn-danger" role="button" value="Excluir" type="submit" ></input>
                                     </form>
                                     @endif
                                 </div>
                             </div>
                         </div>
-                        <div class="tags text-center">
+                        <div class="tags d-flex flex-column justify-content-evenly align-items-center gap-2">
                             <h5 class="card-title">Tags</h5>
-                            <div class="card-body d-flex justify-content-evenly">
-                                @for($i = 0; $i < count($post->tags_id); $i++)
-                                <p class="d-flex justify-content-center">{{$tags[$i]->name}}</p>
-                                @endfor
+                            <div class="d-flex flex-row justify-content-around align-items-center gap-2">
+                                    @for($i = 0; $i < count($post->tags_id); $i++)
+                                    <p class="">{{$tags[$i]->name}}</p>
+                                    @endfor
                             </div>
                         </div>
                     </div>

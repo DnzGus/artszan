@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Album;
 use App\Models\User;
+use App\Models\Follow;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Laravel\Facades\Image as Intervention;
 
@@ -111,14 +112,17 @@ class AlbumController extends Controller
         $user_id = Auth::id();
         $user = User::find($user_id);
         $album = Album::find($id);
+        $follows = Follow::where('user_id', $user_id)->where('follows_id', $album->user->id)->exists();
         if($album){
             if($album->private != 0){
                 if($user_id != $album->user_id and $user->profile != 'admin'){
                     return redirect()->route('home');
                 }
             }
-            $posts = Post::all();
-            return view('album.showalbum', compact('album','posts','user'));
+            foreach($album->images_id as $image){
+                $posts = Post::all();
+            }
+            return view('album.showalbum', compact('album','posts','user','follows'));
         }
         return redirect()->route('feed.index');
     }
